@@ -1,731 +1,867 @@
 <!DOCTYPE html>
 <html lang="el">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Μαρία Πλιάκου — Κλινική Ψυχολόγος · Ψυχοθεραπεύτρια CBT | Αθήνα & Online</title>
-<meta name="description" content="Μαρία Πλιάκου, Κλινική Ψυχολόγος και Ψυχοθεραπεύτρια CBT στην Καισαριανή, Αθήνα. Ατομική ψυχοθεραπεία ενηλίκων & εφήβων, συμβουλευτική γονέων, online συνεδρίες." />
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
-<style>
-  :root{
-    --bg:#FAF8F5;
-    --bg-2:#F2EFE9;
-    --bg-3:#E8E2D6;
-    --ink:#2B2620;
-    --ink-soft:#5B5247;
-    --muted:#8B8174;
-    --line:#D9D2C4;
-    --terracotta:#B5765A;
-    --terracotta-deep:#8E5A43;
-    --sage:#8A9A82;
-    --sand:#D6C9B0;
-    --cream:#EFE9DC;
-    --serif:"Cormorant Garamond", Georgia, serif;
-    --sans:"DM Sans", -apple-system, BlinkMacSystemFont, sans-serif;
-    --maxw:1240px;
-    --radius:2px;
-    --ease:cubic-bezier(.2,.7,.2,1);
-  }
-  *{box-sizing:border-box;margin:0;padding:0}
-  html{scroll-behavior:smooth}
-  body{
-    font-family:var(--sans);
-    background:var(--bg);
-    color:var(--ink);
-    font-size:16px;
-    line-height:1.65;
-    -webkit-font-smoothing:antialiased;
-    overflow-x:hidden;
-  }
-  a{color:inherit;text-decoration:none}
-  img{max-width:100%;display:block}
-  h1,h2,h3,h4{font-family:var(--serif);font-weight:500;color:var(--ink);letter-spacing:-.01em;line-height:1.15}
-  h1{font-size:clamp(2.6rem,6vw,5.2rem)}
-  h2{font-size:clamp(2rem,4vw,3.4rem)}
-  h3{font-size:clamp(1.4rem,2.2vw,1.9rem)}
-  p{color:var(--ink-soft);font-weight:300}
-  .container{max-width:var(--maxw);margin:0 auto;padding:0 32px}
-  .eyebrow{
-    font-size:.72rem;letter-spacing:.28em;text-transform:uppercase;
-    font-weight:500;color:var(--terracotta-deep);
-    display:inline-flex;align-items:center;gap:14px;
-  }
-  .eyebrow::before{content:"";width:32px;height:1px;background:var(--terracotta)}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Smiles Dental Clinic | Δρ. Άννα Στριγκόνη - Παλαιό Φάληρο</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-  /* NAV */
-  header.nav{
-    position:fixed;top:0;left:0;right:0;z-index:100;
-    background:rgba(250,248,245,.85);backdrop-filter:blur(14px);
-    border-bottom:1px solid transparent;transition:all .3s var(--ease);
-  }
-  header.nav.scrolled{border-bottom-color:var(--line)}
-  .nav-inner{
-    max-width:var(--maxw);margin:0 auto;padding:18px 32px;
-    display:flex;align-items:center;justify-content:space-between;gap:24px;
-  }
-  .brand{display:flex;align-items:center;gap:14px;cursor:pointer}
-  .brand img{width:42px;height:42px;border-radius:50%;object-fit:cover;border:1px solid var(--line)}
-  .brand-text{display:flex;flex-direction:column;line-height:1.1}
-  .brand-text strong{font-family:var(--serif);font-size:1.15rem;font-weight:500;color:var(--ink)}
-  .brand-text span{font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-top:3px}
-  nav.links{display:flex;align-items:center;gap:36px}
-  nav.links a{
-    font-size:.86rem;color:var(--ink-soft);font-weight:400;
-    position:relative;padding:6px 0;transition:color .25s;
-  }
-  nav.links a:hover,nav.links a.active{color:var(--ink)}
-  nav.links a.active::after{
-    content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:var(--terracotta);
-  }
-  .btn{
-    display:inline-flex;align-items:center;justify-content:center;gap:10px;
-    padding:14px 26px;border:none;cursor:pointer;font-family:var(--sans);
-    font-size:.82rem;letter-spacing:.12em;text-transform:uppercase;font-weight:500;
-    transition:all .3s var(--ease);border-radius:var(--radius);
-  }
-  .btn-primary{background:var(--ink);color:var(--bg)}
-  .btn-primary:hover{background:var(--terracotta-deep);transform:translateY(-2px)}
-  .btn-outline{background:transparent;color:var(--ink);border:1px solid var(--ink)}
-  .btn-outline:hover{background:var(--ink);color:var(--bg)}
-  .btn-sm{padding:11px 20px;font-size:.74rem}
-  .hamburger{display:none;background:none;border:none;cursor:pointer;width:32px;height:32px;flex-direction:column;justify-content:center;gap:5px}
-  .hamburger span{display:block;width:22px;height:1px;background:var(--ink);transition:all .3s}
-  .mobile-menu{
-    display:none;position:fixed;inset:0;background:var(--bg);z-index:99;
-    padding:100px 32px 40px;flex-direction:column;gap:8px;
-  }
-  .mobile-menu.open{display:flex}
-  .mobile-menu a{
-    font-family:var(--serif);font-size:2rem;color:var(--ink);
-    padding:14px 0;border-bottom:1px solid var(--line);
-  }
+    <style>
+        /* CSS Variables for Premium Look */
+        :root {
+            --primary: #1A365D; /* Deep Navy */
+            --primary-light: #2c5282;
+            --accent: #B59A5A; /* Elegant Gold */
+            --accent-hover: #9c844c;
+            --bg-light: #F8F9FA;
+            --bg-white: #FFFFFF;
+            --text-main: #333333;
+            --text-light: #666666;
+            --transition: all 0.3s ease;
+        }
 
-  /* PAGES */
-  .page{display:none;padding-top:90px;animation:fade .6s var(--ease)}
-  .page.is-active{display:block}
-  @keyframes fade{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+        /* Reset & Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-  /* HERO */
-  .hero{position:relative;padding:80px 0 120px;overflow:hidden}
-  .hero-grid{display:grid;grid-template-columns:1.3fr 1fr;gap:80px;align-items:center}
-  .hero-eyebrow{margin-bottom:28px}
-  .hero h1{margin-bottom:32px}
-  .hero h1 em{font-style:italic;color:var(--terracotta-deep);font-weight:400}
-  .hero .lead{font-size:1.15rem;line-height:1.7;max-width:540px;margin-bottom:44px;color:var(--ink-soft)}
-  .hero-ctas{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:56px}
-  .hero-stats{
-    display:grid;grid-template-columns:repeat(2,1fr);gap:24px 40px;
-    padding-top:36px;border-top:1px solid var(--line);max-width:560px;
-  }
-  .stat strong{
-    display:block;font-family:var(--serif);font-size:1.6rem;color:var(--ink);font-weight:500;margin-bottom:4px;
-  }
-  .stat span{font-size:.78rem;color:var(--muted);letter-spacing:.04em}
-  .hero-visual{position:relative;aspect-ratio:4/5;display:flex;align-items:center;justify-content:center}
-  .hero-visual svg{width:100%;height:100%;position:absolute;inset:0}
-  .blob{position:absolute;border-radius:50%;filter:blur(40px);opacity:.5;animation:float 18s ease-in-out infinite}
-  .blob.b1{width:320px;height:320px;background:var(--sand);top:-40px;right:-40px}
-  .blob.b2{width:260px;height:260px;background:var(--sage);bottom:0;left:-30px;animation-delay:-6s;opacity:.35}
-  @keyframes float{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(20px,-30px) scale(1.08)}}
+        html {
+            scroll-behavior: smooth;
+        }
 
-  /* SECTION */
-  section.block{padding:120px 0;position:relative}
-  .section-head{max-width:720px;margin-bottom:72px}
-  .section-head .eyebrow{margin-bottom:24px}
-  .section-head h2{margin-bottom:20px}
-  .section-head p{font-size:1.08rem;line-height:1.75}
-  .alt-bg{background:var(--bg-2)}
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--text-main);
+            background-color: var(--bg-white);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
 
-  /* WELCOME */
-  .welcome{padding:120px 0;background:var(--bg-2)}
-  .welcome-grid{display:grid;grid-template-columns:1fr 1.4fr;gap:80px;align-items:start}
-  .welcome h2{margin-bottom:0}
-  .welcome p{font-size:1.08rem;line-height:1.85;margin-bottom:20px}
+        h1, h2, h3, h4 {
+            font-family: 'Cormorant Garamond', serif;
+            color: var(--primary);
+        }
 
-  /* ABOUT */
-  .about-hero{display:grid;grid-template-columns:.85fr 1.15fr;gap:80px;align-items:start;margin-bottom:100px}
-  .about-photo{
-    position:relative;aspect-ratio:4/5;background:var(--bg-3);overflow:hidden;border-radius:var(--radius);
-  }
-  .about-photo img{width:100%;height:100%;object-fit:cover;filter:saturate(.92) contrast(.97)}
-  .about-photo::after{
-    content:"";position:absolute;inset:0;
-    background:linear-gradient(180deg,transparent 60%,rgba(43,38,32,.15));
-  }
-  .about-credentials{
-    display:grid;grid-template-columns:repeat(3,1fr);gap:0;
-    margin-top:80px;padding:36px 0;
-    border-top:1px solid var(--line);border-bottom:1px solid var(--line);
-  }
-  .cred{padding:0 28px;border-right:1px solid var(--line)}
-  .cred:last-child{border-right:none}
-  .cred strong{display:block;font-family:var(--serif);font-size:1.4rem;color:var(--ink);font-weight:500;margin-bottom:6px}
-  .cred span{font-size:.82rem;color:var(--muted)}
-  .bio-block{margin-bottom:64px;max-width:780px}
-  .bio-block h3{margin-bottom:18px;color:var(--terracotta-deep);font-style:italic}
-  .bio-block p{font-size:1.05rem;line-height:1.85;margin-bottom:16px}
-  .license-tag{
-    display:inline-block;padding:10px 18px;background:var(--cream);
-    border:1px solid var(--sand);font-size:.82rem;color:var(--ink-soft);
-    letter-spacing:.04em;border-radius:var(--radius);
-  }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
 
-  /* SERVICES */
-  .services-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px}
-  .service{
-    background:var(--bg);padding:48px 44px;border:1px solid var(--line);
-    border-radius:var(--radius);transition:all .4s var(--ease);position:relative;overflow:hidden;
-  }
-  .service:hover{transform:translateY(-4px);border-color:var(--terracotta);box-shadow:0 20px 60px -30px rgba(43,38,32,.2)}
-  .service-num{
-    font-family:var(--serif);font-size:.9rem;font-style:italic;
-    color:var(--terracotta);margin-bottom:20px;letter-spacing:.05em;
-  }
-  .service h3{margin-bottom:12px}
-  .service .tagline{
-    font-size:.82rem;color:var(--muted);letter-spacing:.08em;
-    margin-bottom:24px;padding-bottom:20px;border-bottom:1px solid var(--line);
-  }
-  .service p{font-size:.95rem;line-height:1.75;margin-bottom:18px}
-  .service ul{list-style:none;margin:18px 0 24px}
-  .service ul li{
-    font-size:.92rem;color:var(--ink-soft);padding:6px 0 6px 22px;position:relative;
-  }
-  .service ul li::before{
-    content:"";position:absolute;left:0;top:15px;width:10px;height:1px;background:var(--terracotta);
-  }
-  .service-foot{
-    margin-top:auto;padding-top:18px;border-top:1px solid var(--line);
-    font-size:.78rem;color:var(--muted);letter-spacing:.06em;
-  }
-  .practical{
-    margin-top:64px;padding:40px 48px;background:var(--cream);
-    border-left:3px solid var(--terracotta);border-radius:var(--radius);
-    display:grid;grid-template-columns:repeat(3,1fr);gap:32px;
-  }
-  .practical div strong{display:block;font-family:var(--serif);font-size:1.1rem;color:var(--ink);margin-bottom:6px;font-weight:500}
-  .practical div span{font-size:.92rem;color:var(--ink-soft)}
+        ul {
+            list-style: none;
+        }
 
-  /* APPROACH */
-  .approach-intro{font-size:1.2rem;line-height:1.85;max-width:820px;margin-bottom:80px;color:var(--ink-soft);font-weight:300}
-  .pillars{display:grid;gap:0}
-  .pillar{
-    display:grid;grid-template-columns:80px 1fr 2fr;gap:48px;
-    padding:48px 0;border-bottom:1px solid var(--line);align-items:start;
-  }
-  .pillar:last-child{border-bottom:none}
-  .pillar-num{font-family:var(--serif);font-size:2.4rem;font-style:italic;color:var(--terracotta);font-weight:400}
-  .pillar h3{font-size:1.5rem}
-  .pillar p{font-size:1.02rem;line-height:1.8}
-  .inclusion{
-    margin-top:80px;padding:56px;background:var(--sage);color:var(--bg);border-radius:var(--radius);
-  }
-  .inclusion .eyebrow{color:rgba(250,248,245,.7)}
-  .inclusion .eyebrow::before{background:rgba(250,248,245,.6)}
-  .inclusion h3{color:var(--bg);margin:18px 0 16px;font-size:1.7rem}
-  .inclusion p{color:rgba(250,248,245,.9);max-width:720px;font-size:1.05rem;line-height:1.8}
+        /* Reusable Components */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 5%;
+        }
 
-  /* TESTIMONIALS */
-  .testimonials{padding:120px 0;background:var(--bg-2)}
-  .testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin-top:60px}
-  .testi{background:var(--bg);padding:36px 32px;border:1px solid var(--line);border-radius:var(--radius)}
-  .testi-stars{color:var(--terracotta);letter-spacing:2px;font-size:.85rem;margin-bottom:16px}
-  .testi p{font-family:var(--serif);font-style:italic;font-size:1.08rem;line-height:1.65;color:var(--ink);margin-bottom:20px}
-  .testi-author{font-size:.82rem;color:var(--muted);letter-spacing:.06em;text-transform:uppercase}
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
 
-  /* CONTACT */
-  .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start}
-  .contact-info{padding-right:20px}
-  .contact-info h3{font-size:1.3rem;margin:32px 0 14px;color:var(--terracotta-deep);font-style:italic}
-  .contact-info p,.contact-info a{font-size:1.02rem;line-height:1.9;color:var(--ink-soft)}
-  .contact-info a:hover{color:var(--terracotta-deep)}
-  .contact-meta{margin:24px 0;padding:24px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-  .contact-meta .row{display:flex;gap:18px;padding:8px 0;align-items:flex-start}
-  .contact-meta .icon{width:24px;flex-shrink:0;color:var(--terracotta);font-size:1.1rem;padding-top:2px}
-  .socials{display:flex;gap:14px;margin-top:24px}
-  .socials a{
-    width:42px;height:42px;border:1px solid var(--line);border-radius:50%;
-    display:flex;align-items:center;justify-content:center;transition:all .3s;
-  }
-  .socials a:hover{background:var(--ink);border-color:var(--ink)}
-  .socials a:hover svg{fill:var(--bg)}
-  .socials svg{width:18px;height:18px;fill:var(--ink-soft);transition:fill .3s}
-  form.contact-form{display:flex;flex-direction:column;gap:24px}
-  .field{position:relative}
-  .field label{
-    display:block;font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;
-    color:var(--muted);margin-bottom:8px;font-weight:500;
-  }
-  .field input,.field textarea,.field select{
-    width:100%;padding:14px 0;background:transparent;border:none;
-    border-bottom:1px solid var(--line);font-family:var(--sans);
-    font-size:1rem;color:var(--ink);outline:none;transition:border-color .3s;
-  }
-  .field select{appearance:none;background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'><path fill='%238B8174' d='M6 8L0 0h12z'/></svg>") no-repeat right 4px center;padding-right:24px}
-  .field textarea{resize:vertical;min-height:100px}
-  .field input:focus,.field textarea:focus,.field select:focus{border-bottom-color:var(--terracotta)}
-  .privacy-note{font-size:.78rem;color:var(--muted);line-height:1.6;margin-top:-8px}
-  .form-success{display:none;padding:20px;background:var(--cream);border-left:3px solid var(--sage);font-size:.95rem;color:var(--ink)}
-  .form-success.show{display:block}
-  .map-wrap{margin-top:80px;border-radius:var(--radius);overflow:hidden;border:1px solid var(--line)}
-  .map-wrap iframe{width:100%;height:420px;border:0;display:block;filter:grayscale(.3) contrast(.95)}
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.1rem;
+            color: var(--text-light);
+            margin-bottom: 4rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
 
-  /* FOOTER */
-  footer.site{padding:80px 0 40px;background:var(--ink);color:var(--bg)}
-  .foot-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:60px;margin-bottom:60px}
-  footer.site h4{font-family:var(--serif);font-size:1.6rem;color:var(--bg);font-weight:500;margin-bottom:14px;font-style:italic}
-  footer.site p,footer.site a{color:rgba(250,248,245,.65);font-size:.92rem;line-height:1.8}
-  footer.site a:hover{color:var(--bg)}
-  .foot-col strong{display:block;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--terracotta);margin-bottom:18px;font-weight:500}
-  .foot-col ul{list-style:none;display:flex;flex-direction:column;gap:8px}
-  .foot-bottom{
-    padding-top:32px;border-top:1px solid rgba(250,248,245,.1);
-    display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;
-    font-size:.82rem;color:rgba(250,248,245,.5);
-  }
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+            transition: var(--transition);
+            cursor: pointer;
+            border: none;
+        }
 
-  /* REVEAL */
-  .reveal{opacity:0;transform:translateY(20px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
-  .reveal.in{opacity:1;transform:none}
+        .btn-primary {
+            background-color: var(--accent);
+            color: var(--bg-white);
+        }
 
-  /* RESPONSIVE */
-  @media(max-width:960px){
-    nav.links{display:none}
-    .hamburger{display:flex}
-    .nav-inner .btn{display:none}
-    .hero-grid,.welcome-grid,.about-hero,.contact-grid{grid-template-columns:1fr;gap:48px}
-    .hero{padding:40px 0 80px}
-    .hero-visual{max-width:420px;margin:0 auto;aspect-ratio:1}
-    .services-grid,.testi-grid{grid-template-columns:1fr}
-    .pillar{grid-template-columns:1fr;gap:14px;padding:36px 0}
-    .pillar-num{font-size:1.8rem}
-    .practical,.about-credentials,.foot-grid{grid-template-columns:1fr;gap:24px}
-    .cred{border-right:none;border-bottom:1px solid var(--line);padding:18px 0}
-    .cred:last-child{border-bottom:none}
-    section.block,.welcome,.testimonials{padding:80px 0}
-    .container{padding:0 24px}
-    .inclusion{padding:36px 28px}
-  }
-</style>
+        .btn-primary:hover {
+            background-color: var(--accent-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(181, 154, 90, 0.2);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--primary);
+            color: var(--bg-white);
+        }
+
+        /* Reveal Animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Navbar */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+            transition: var(--transition);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo img {
+            height: 60px;
+            transition: var(--transition);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            font-weight: 500;
+            font-size: 0.9rem;
+            color: var(--primary);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            font-size: 1.5rem;
+            color: var(--primary);
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0) 30%, rgba(255,255,255,0.9) 60%, rgba(255,255,255,1) 100%), 
+                        url('https://raw.githubusercontent.com/agelmet/STRIGKONI/refs/heads/main/unnamed-15.jpg') no-repeat center left / cover;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            position: relative;
+        }
+
+        .hero-content {
+            width: 50%;
+            padding-right: 8%;
+            padding-left: 2rem;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+        }
+
+        .hero h1 span {
+            color: var(--accent);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            margin-bottom: 2.5rem;
+        }
+
+        .hero-btns {
+            display: flex;
+            gap: 1rem;
+        }
+
+        /* About Section */
+        .about {
+            padding: 8rem 0;
+            background-color: var(--bg-white);
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-image {
+            position: relative;
+        }
+
+        .about-image img {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        .about-image::after {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            right: -20px;
+            width: 50%;
+            height: 50%;
+            border: 3px solid var(--accent);
+            border-radius: 10px;
+            z-index: -1;
+        }
+
+        .about-text h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .about-text p {
+            margin-bottom: 1.5rem;
+            color: var(--text-light);
+            text-align: justify;
+        }
+
+        /* Services Section */
+        .services {
+            padding: 8rem 0;
+            background-color: var(--bg-light);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: var(--bg-white);
+            padding: 2.5rem;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            transition: var(--transition);
+            border-top: 4px solid transparent;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            border-top-color: var(--accent);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+        }
+
+        .service-icon {
+            font-size: 2.5rem;
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+        }
+
+        .service-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            height: 3rem;
+        }
+
+        .service-card p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+        }
+        
+        .service-tags {
+            font-size: 0.8rem;
+            color: var(--primary);
+            font-weight: 600;
+            background: rgba(181, 154, 90, 0.1);
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        /* Philosophy Section */
+        .philosophy {
+            padding: 8rem 0;
+            background-color: var(--primary);
+            color: var(--bg-white);
+        }
+
+        .philosophy .section-title, .philosophy .section-subtitle {
+            color: var(--bg-white);
+        }
+        .philosophy .section-subtitle {
+            opacity: 0.8;
+        }
+
+        .phil-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .phil-card {
+            background: rgba(255,255,255,0.05);
+            padding: 3rem;
+            border-radius: 10px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .phil-card h3 {
+            color: var(--accent);
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+
+        /* Gallery Section */
+        .gallery {
+            padding: 8rem 0;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: repeat(2, 250px);
+            gap: 1rem;
+        }
+
+        .gallery-item {
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: all 0.5s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+        
+        /* Specific Grid Placements for Gallery */
+        .gallery-item:nth-child(1) { grid-column: 1 / 3; grid-row: 1 / 3; } /* Entrance large */
+        .gallery-item:nth-child(2) { grid-column: 3 / 4; grid-row: 1 / 2; } /* Chair */
+        .gallery-item:nth-child(3) { grid-column: 4 / 5; grid-row: 1 / 2; } /* Sofa 1 */
+        .gallery-item:nth-child(4) { grid-column: 3 / 4; grid-row: 2 / 3; } /* Chair close */
+        .gallery-item:nth-child(5) { grid-column: 4 / 5; grid-row: 2 / 3; } /* Sofa 2 */
+
+        /* Reviews Section */
+        .reviews {
+            padding: 8rem 0;
+            background-color: var(--bg-light);
+        }
+
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .review-card {
+            background: var(--bg-white);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+        }
+
+        .review-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .review-author {
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .review-rating {
+            color: #FFD700;
+            font-size: 0.9rem;
+        }
+
+        .review-date {
+            font-size: 0.8rem;
+            color: #999;
+            margin-top: 0.5rem;
+        }
+
+        .review-text {
+            font-size: 0.95rem;
+            color: var(--text-light);
+            font-style: italic;
+        }
+
+        .reviews-cta {
+            text-align: center;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--primary);
+            color: var(--bg-white);
+            padding: 4rem 0 2rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr;
+            gap: 4rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-about img {
+            height: 60px;
+            background: white;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-about p {
+            color: rgba(255,255,255,0.7);
+            font-size: 0.95rem;
+        }
+
+        .footer-title {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--accent);
+        }
+
+        .footer-contact li {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            color: rgba(255,255,255,0.8);
+        }
+
+        .footer-contact i {
+            color: var(--accent);
+            margin-top: 5px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.5);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .hero-content {
+                width: 60%;
+            }
+            .about-grid, .phil-grid {
+                gap: 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: white;
+                flex-direction: column;
+                padding: 2rem 0;
+                box-shadow: 0 10px 15px rgba(0,0,0,0.05);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero {
+                background: linear-gradient(to bottom, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0.95) 60%, rgba(255,255,255,1) 100%), 
+                            url('https://raw.githubusercontent.com/agelmet/STRIGKONI/refs/heads/main/unnamed-15.jpg') no-repeat center center / cover;
+                justify-content: center;
+                align-items: flex-end;
+                padding-bottom: 5rem;
+            }
+
+            .hero-content {
+                width: 100%;
+                padding: 0 5%;
+                text-align: center;
+            }
+
+            .hero h1 {
+                font-size: 3rem;
+            }
+
+            .hero-btns {
+                justify-content: center;
+            }
+
+            .about-grid, .phil-grid, .footer-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr 1fr;
+                grid-template-rows: auto;
+            }
+            
+            .gallery-item:nth-child(1) { grid-column: 1 / 3; grid-row: 1; height: 300px;}
+            .gallery-item:nth-child(2) { grid-column: 1 / 2; grid-row: 2; height: 200px;}
+            .gallery-item:nth-child(3) { grid-column: 2 / 3; grid-row: 2; height: 200px;}
+            .gallery-item:nth-child(4) { grid-column: 1 / 2; grid-row: 3; height: 200px;}
+            .gallery-item:nth-child(5) { grid-column: 2 / 3; grid-row: 3; height: 200px;}
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            .hero-btns {
+                flex-direction: column;
+            }
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+            .gallery-item { grid-column: 1 / -1 !important; height: 250px !important; }
+        }
+    </style>
 </head>
 <body>
 
-<!-- NAV -->
-<header class="nav" id="nav">
-  <div class="nav-inner">
-    <div class="brand" data-route="home">
-      <img src="https://github.com/agelmet/PLIAKOU/blob/main/logooo.jpg?raw=true" alt="Λογότυπο Μαρία Πλιάκου" />
-      <div class="brand-text">
-        <strong>Μαρία Πλιάκου</strong>
-        <span>Κλινική Ψυχολόγος</span>
-      </div>
-    </div>
-    <nav class="links">
-      <a data-route="about">Σχετικά με εμένα</a>
-      <a data-route="services">Υπηρεσίες</a>
-      <a data-route="approach">Θεραπευτική Προσέγγιση</a>
-      <a data-route="contact">Επικοινωνία</a>
-    </nav>
-    <button class="btn btn-primary btn-sm" data-route="contact">Κλείστε Ραντεβού</button>
-    <button class="hamburger" id="hamburger" aria-label="Μενού"><span></span><span></span><span></span></button>
-  </div>
-</header>
-
-<div class="mobile-menu" id="mobileMenu">
-  <a data-route="home">Αρχική</a>
-  <a data-route="about">Σχετικά με εμένα</a>
-  <a data-route="services">Υπηρεσίες</a>
-  <a data-route="approach">Θεραπευτική Προσέγγιση</a>
-  <a data-route="contact">Επικοινωνία</a>
-</div>
-
-<!-- HOME -->
-<main id="home" class="page is-active">
-  <section class="hero">
-    <div class="container">
-      <div class="hero-grid">
-        <div>
-          <div class="eyebrow hero-eyebrow">Κλινική Ψυχολόγος · Ψυχοθεραπεύτρια CBT</div>
-          <h1>Ένας χώρος για να <em>ξεκουραστείς</em> από τον εαυτό σου.</h1>
-          <p class="lead">Μαζί χτίζουμε τα εργαλεία που χρειάζεσαι — για να διαχειριστείς το άγχος, να ξεπεράσεις τα εμπόδια και να επιστρέψεις στη ζωή που θέλεις να ζεις. Επιστημονικά τεκμηριωμένη, εξατομικευμένη θεραπεία στην Αθήνα και online.</p>
-          <div class="hero-ctas">
-            <button class="btn btn-primary" data-route="contact">Κλείστε Ραντεβού</button>
-            <button class="btn btn-outline" data-route="about">Μάθετε περισσότερα</button>
-          </div>
-          <div class="hero-stats">
-            <div class="stat"><strong>8+ χρόνια</strong><span>κλινικής εμπειρίας</span></div>
-            <div class="stat"><strong>MSc Leiden</strong><span>Κλινική Ψυχολογία</span></div>
-            <div class="stat"><strong>Δια ζώσης & Online</strong><span>Καισαριανή · Αθήνα</span></div>
-            <div class="stat"><strong>Αρ. Αδείας 12918</strong><span>Αδειούχος Κλινική Ψυχολόγος</span></div>
-          </div>
-        </div>
-        <div class="hero-visual">
-          <div class="blob b1"></div>
-          <div class="blob b2"></div>
-          <svg viewBox="0 0 400 500" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0%" stop-color="#B5765A" stop-opacity=".25"/>
-                <stop offset="100%" stop-color="#8A9A82" stop-opacity=".15"/>
-              </linearGradient>
-            </defs>
-            <path d="M200 60 C 290 60 350 150 350 250 C 350 370 280 440 200 440 C 110 440 50 360 50 250 C 50 150 110 60 200 60 Z" fill="url(#g1)"/>
-            <path d="M140 200 Q 160 170 200 175 Q 235 180 245 215 Q 250 245 240 280 Q 230 320 200 340 Q 175 350 160 330 Q 140 305 135 270 Q 130 235 140 200 Z" stroke="#8E5A43" stroke-width="1.2" fill="none" opacity=".7"/>
-            <circle cx="215" cy="225" r="3" fill="#2B2620"/>
-            <path d="M195 260 Q 205 270 220 263" stroke="#2B2620" stroke-width="1.2" fill="none" stroke-linecap="round"/>
-            <path d="M180 300 Q 200 310 225 302" stroke="#8E5A43" stroke-width="1" fill="none" stroke-linecap="round" opacity=".6"/>
-          </svg>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="welcome reveal">
-    <div class="container">
-      <div class="welcome-grid">
-        <div>
-          <div class="eyebrow" style="margin-bottom:20px">Καλωσήρθατε</div>
-          <h2>Ξεκινάμε από εκεί που είσαι τώρα.</h2>
-        </div>
-        <div>
-          <p>Το γραφείο μου είναι ένα ήρεμο, ασφαλές μέρος — χωρίς κρίσεις, χωρίς βιασύνη. Εδώ δεν χρειάζεται να εξηγήσεις γιατί νιώθεις όπως νιώθεις. Μπορούμε να ξεκινήσουμε ακριβώς από εκεί που βρίσκεσαι τώρα.</p>
-          <p>Εργάζομαι με ενήλικες, εφήβους και παιδιά, δια ζώσης στην Αθήνα και διαδικτυακά — χρησιμοποιώντας επιστημονικά αναγνωρισμένες μεθόδους που φέρνουν ουσιαστικά, ορατά αποτελέσματα.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="testimonials reveal">
-    <div class="container">
-      <div class="section-head" style="margin-bottom:0">
-        <div class="eyebrow">Μαρτυρίες</div>
-        <h2>Λόγια από ανθρώπους που εμπιστεύθηκαν τη διαδικασία</h2>
-      </div>
-      <div class="testi-grid">
-        <div class="testi">
-          <div class="testi-stars">★★★★★</div>
-          <p>«Από την πρώτη κιόλας συνεδρία ένιωσα πως με καταλαβαίνει σε βάθος. Η προσέγγισή της είναι ζεστή αλλά και απίστευτα δομημένη.»</p>
-          <div class="testi-author">Άγγελος · 08 Ιουλ 2025</div>
-        </div>
-        <div class="testi">
-          <div class="testi-stars">★★★★★</div>
-          <p>«Απευθύνθηκα στην κα. Πλιάκου σε μια περίοδο έντονου άγχους και η βοήθειά της υπήρξε καθοριστική. Επαγγελματισμός και ενσυναίσθηση σε ίσα μέρη.»</p>
-          <div class="testi-author">Έφη · 01 Αυγ 2025</div>
-        </div>
-        <div class="testi">
-          <div class="testi-stars">★★★★★</div>
-          <p>«Η συνεργασία μου με την κα Πλιάκου υπήρξε μια πολύ θετική πρώτη ψυχοθεραπευτική εμπειρία. Με βοήθησε να αποκτήσω εργαλεία που χρησιμοποιώ καθημερινά.»</p>
-          <div class="testi-author">Marily · 30 Αυγ 2025</div>
-        </div>
-      </div>
-    </div>
-  </section>
-</main>
-
-<!-- ABOUT -->
-<main id="about" class="page">
-  <section class="block">
-    <div class="container">
-      <div class="about-hero reveal">
-        <div class="about-photo">
-          <img src="https://cdn.doctoranytime.gr/profileimages/1e996f8a-0413-4e48-b398-f61643e23e92.webp" alt="Μαρία Πλιάκου, Κλινική Ψυχολόγος"/>
-        </div>
-        <div>
-          <div class="eyebrow" style="margin-bottom:24px">Σχετικά με εμένα</div>
-          <h2 style="margin-bottom:14px">Μαρία Πλιάκου</h2>
-          <p style="font-family:var(--serif);font-size:1.3rem;font-style:italic;color:var(--terracotta-deep);margin-bottom:32px">Κλινική Ψυχολόγος · Ψυχοθεραπεύτρια CBT</p>
-          <p style="font-size:1.08rem;line-height:1.85;margin-bottom:24px">Πιστεύω ότι η θεραπεία δεν είναι μια παθητική διαδικασία — είναι συνεργατική δουλειά. Ο ρόλος μου δεν είναι να σου δώσω απαντήσεις, αλλά να σε βοηθήσω να τις βρεις μόνος σου, ένοπλος με νέες δεξιότητες και μια βαθύτερη κατανόηση του εαυτού σου.</p>
-          <span class="license-tag">Αρ. Αδείας: 12918 / 2-6-2017</span>
-        </div>
-      </div>
-
-      <div class="bio-block reveal">
-        <h3>Σπουδές & Εξειδίκευση</h3>
-        <p>Σπούδασα Ψυχολογία στο Αριστοτέλειο Πανεπιστήμιο Θεσσαλονίκης, ολοκληρώνοντας μέρος των σπουδών μου στο Universität Konstanz της Γερμανίας μέσω υποτροφίας. Στη συνέχεια απέκτησα Μεταπτυχιακό Τίτλο (MSc) στην Κλινική Ψυχολογία από το Leiden University της Ολλανδίας — ένα από τα κορυφαία πανεπιστήμια στον κλάδο παγκοσμίως.</p>
-        <p>Ακολούθησε 4ετής εντατική εξειδίκευση στη Γνωσιακή Συμπεριφορική Θεραπεία (CBT) μέσω της Ελληνικής Εταιρείας Γνωσιακής-Συμπεριφοριστικής Θεραπείας (ΕΓΣΣ), και πολυετής επαγγελματική εμπειρία στο Ινστιτούτο Έρευνας και Θεραπείας της Συμπεριφοράς (ΙΕΘΣ) στην Αθήνα.</p>
-      </div>
-
-      <div class="bio-block reveal">
-        <h3>Από το Νοσοκομείο στο Ιδιωτικό Γραφείο</h3>
-        <p>Πριν ανοίξω το ιδιωτικό μου γραφείο, έχτισα την κλινική μου εμπειρία εκεί που τα πράγματα είναι πιο απαιτητικά: στο Ψυχιατρικό Νοσοκομείο Θεσσαλονίκης (ΨΝΘ) και στην Ψυχιατρική Κλινική του Νοσοκομείου Παπαγεωργίου, αξιολογώντας και υποστηρίζοντας ασθενείς με σοβαρές ψυχικές διαταραχές. Στο πλαίσιο των σπουδών μου στην Ολλανδία, εργάστηκα και στο LUTC (Leiden University Treatment Centre).</p>
-        <p>Αυτή η εμπειρία με έχει εκπαιδεύσει να προσεγγίζω κάθε άνθρωπο με ψυχραιμία, σαφήνεια και έλλειψη κρίσης — ανεξάρτητα από το βάρος αυτού που φέρνει μαζί του στο γραφείο.</p>
-      </div>
-
-      <div class="bio-block reveal">
-        <h3>Γιατί εξειδικεύτηκα στη CBT</h3>
-        <p>Διάλεξα τη Γνωσιακή Συμπεριφορική Θεραπεία γιατί πιστεύω στην αλλαγή που μπορείς να δεις και να μετρήσεις. Η CBT δεν είναι απλώς μια συζήτηση — είναι ένα δομημένο ταξίδι με συγκεκριμένους στόχους, εργαλεία και αποτελέσματα. Είναι η πιο επιστημονικά τεκμηριωμένη προσέγγιση για το άγχος, την κατάθλιψη και τους ιδεοψυχαναγκασμούς — και βλέπω τη διαφορά που κάνει στους ανθρώπους που δουλεύω μαζί τους.</p>
-      </div>
-
-      <div class="about-credentials reveal">
-        <div class="cred"><strong>AUTh + Konstanz</strong><span>Προπτυχιακές σπουδές Ψυχολογίας</span></div>
-        <div class="cred"><strong>Leiden University</strong><span>MSc Κλινική Ψυχολογία</span></div>
-        <div class="cred"><strong>ΕΓΣΣ · ΙΕΘΣ</strong><span>Εξειδίκευση CBT 4 ετών</span></div>
-      </div>
-    </div>
-  </section>
-</main>
-
-<!-- SERVICES -->
-<main id="services" class="page">
-  <section class="block">
-    <div class="container">
-      <div class="section-head reveal">
-        <div class="eyebrow">Υπηρεσίες</div>
-        <h2>Πώς μπορώ να σε βοηθήσω</h2>
-        <p>Κάθε άνθρωπος είναι διαφορετικός. Κάθε θεραπεία διαμορφώνεται γύρω από εσένα — τις ανάγκες σου, τον ρυθμό σου, τους στόχους σου. Παρακάτω θα βρεις τους βασικούς τομείς στους οποίους εξειδικεύομαι.</p>
-      </div>
-
-      <div class="services-grid">
-        <div class="service reveal">
-          <div class="service-num">— 01</div>
-          <h3>Ατομική Ψυχοθεραπεία Ενηλίκων</h3>
-          <div class="tagline">Άγχος · Κατάθλιψη · OCD · Burnout · Τραύμα · Σχέσεις</div>
-          <p>Η ατομική ψυχοθεραπεία ενηλίκων αποτελεί τον πυρήνα της δουλειάς μου. Δουλεύουμε μαζί σε δομημένες συνεδρίες των 50 λεπτών, χρησιμοποιώντας τεχνικές CBT για να εντοπίσουμε και να αλλάξουμε τα μοτίβα σκέψης και συμπεριφοράς που σε κρατούν πίσω.</p>
-          <ul>
-            <li>Αγχώδεις διαταραχές & κρίσεις πανικού</li>
-            <li>Κατάθλιψη & χαμηλή διάθεση</li>
-            <li>Ιδεοψυχαναγκαστική Διαταραχή (OCD)</li>
-            <li>Μετατραυματικό Στρες (PTSD)</li>
-            <li>Επαγγελματική εξουθένωση (burnout)</li>
-            <li>Διαπροσωπικές σχέσεις & διαχείριση θυμού</li>
-            <li>Αυτοεκτίμηση & διεκδικητική συμπεριφορά</li>
-          </ul>
-          <div class="service-foot">Συνεδρίες 50' · Δια ζώσης & Online</div>
-        </div>
-
-        <div class="service reveal">
-          <div class="service-num">— 02</div>
-          <h3>Ατομική Ψυχοθεραπεία Εφήβων</h3>
-          <div class="tagline">12–18 ετών · Άγχος · Σχολείο · Ταυτότητα · ΔΕΠΥ</div>
-          <p>Η εφηβεία είναι μια από τις πιο απαιτητικές περιόδους ζωής — για τον έφηβο και για ολόκληρη την οικογένεια. Διαθέτω ειδική θεωρητική κατάρτιση στη θεραπεία παιδιών και εφήβων και χρησιμοποιώ προσαρμοσμένες τεχνικές CBT ανάλογα με την ηλικία και τις ανάγκες κάθε νέου ανθρώπου.</p>
-          <ul>
-            <li>Σχολικό άγχος & αγχώδεις διαταραχές</li>
-            <li>Κοινωνικός φόβος & δυσκολίες σχέσεων</li>
-            <li>Σχολικός εκφοβισμός (bullying)</li>
-            <li>Προβλήματα προσοχής & ΔΕΠΥ</li>
-            <li>Δυσκολίες ταυτότητας & αυτοεκτίμησης</li>
-            <li>Άγχος αποχωρισμού</li>
-          </ul>
-          <div class="service-foot">Συνεδρίες 50' · Ηλικία 12–18 · Δια ζώσης & Online</div>
-        </div>
-
-        <div class="service reveal">
-          <div class="service-num">— 03</div>
-          <h3>Συμβουλευτική Γονέων</h3>
-          <div class="tagline">Κατανόηση · Επικοινωνία · Όρια · Στήριξη</div>
-          <p>Πολλές φορές ο πιο γρήγορος τρόπος να βοηθήσεις το παιδί σου είναι να δουλέψεις πρώτα εσύ. Η Συμβουλευτική Γονέων δεν αφορά «λάθη» — αφορά εργαλεία. Μαθαίνουμε μαζί πώς να αποκωδικοποιείς τη συμπεριφορά του παιδιού σου, πώς να επικοινωνείς με σαφήνεια και αγάπη και πώς να χτίζεις ένα σταθερό, προβλέψιμο πλαίσιο στο σπίτι.</p>
-          <ul>
-            <li>Αποκωδικοποίηση εφηβικής & παιδικής συμπεριφοράς</li>
-            <li>Τεχνικές επικοινωνίας χωρίς συγκρούσεις</li>
-            <li>Θέσπιση υγιών ορίων</li>
-            <li>Διαχείριση κρίσεων & έκρηξης θυμού</li>
-            <li>Υποστήριξη γονέων παιδιών με ΔΕΠΥ ή αναπτυξιακές δυσκολίες</li>
-          </ul>
-          <div class="service-foot">Συνεδρίες 50' · Δια ζώσης & Online</div>
-        </div>
-
-        <div class="service reveal">
-          <div class="service-num">— 04</div>
-          <h3>Online Συνεδρίες</h3>
-          <div class="tagline">Από οπουδήποτε · Την ίδια ποιότητα · Με την ίδια εμπιστοσύνη</div>
-          <p>Όλες οι υπηρεσίες του γραφείου μου παρέχονται και διαδικτυακά — με την ίδια δομή, την ίδια εχεμύθεια και την ίδια θεραπευτική ποιότητα. Οι online συνεδρίες γίνονται μέσω ασφαλούς πλατφόρμας και είναι ιδανικές για ανθρώπους που δεν μπορούν να μετακινηθούν, ζουν εκτός Αθήνας ή απλώς νιώθουν πιο άνετα από τον δικό τους χώρο.</p>
-          <p>Ο ψηφιακός χώρος — όπως και ο φυσικός — είναι 100% ασφαλής, εμπιστευτικός και χωρίς στερεότυπα. Προσφέρεται επίσης επιβεβαιωτική (affirmative) θεραπεία σε ΛΟΑΤΚΙ+ άτομα, σε ένα περιβάλλον απαλλαγμένο από κοινωνικό στίγμα.</p>
-          <div class="service-foot">Διαθέσιμο για όλες τις υπηρεσίες</div>
-        </div>
-      </div>
-
-      <div class="practical reveal">
-        <div><strong>Διάρκεια</strong><span>50 λεπτά ανά συνεδρία</span></div>
-        <div><strong>Χώρος</strong><span>Μίσθου 2, Καισαριανή · και Online</span></div>
-        <div><strong>Ραντεβού</strong><span>Φόρμα, email ή τηλέφωνο</span></div>
-      </div>
-    </div>
-  </section>
-</main>
-
-<!-- APPROACH -->
-<main id="approach" class="page">
-  <section class="block">
-    <div class="container">
-      <div class="section-head reveal">
-        <div class="eyebrow">Θεραπευτική Προσέγγιση</div>
-        <h2>Πώς δουλεύουμε μαζί</h2>
-      </div>
-      <p class="approach-intro reveal">Η Γνωσιακή Συμπεριφορική Θεραπεία (CBT) είναι η επιστημονικά πιο τεκμηριωμένη ψυχοθεραπευτική μέθοδος για μια μεγάλη σειρά ψυχολογικών δυσκολιών. Βασίζεται σε μια απλή αλλά ισχυρή ιδέα: οι σκέψεις μας επηρεάζουν τα συναισθήματα και τη συμπεριφορά μας. Μαθαίνοντας να τις αναγνωρίζουμε και να τις αμφισβητούμε, μπορούμε να αλλάξουμε το πώς νιώθουμε και πώς δρούμε.</p>
-
-      <div class="pillars">
-        <div class="pillar reveal">
-          <div class="pillar-num">i.</div>
-          <h3>Δομή & Στόχοι — όχι ατέρμονη συζήτηση</h3>
-          <p>Κάθε θεραπευτική διαδικασία ξεκινά με μια αξιολόγηση. Μαζί ορίζουμε σαφείς, μετρήσιμους στόχους και παρακολουθούμε την πρόοδο συστηματικά. Οι συνεδρίες έχουν δομή, χωρίς να στερούνται ζεστασιάς. Ανάμεσα στις συναντήσεις μας, μπορεί να υπάρχουν μικρές «ασκήσεις» — ασκήσεις που σε βοηθούν να εφαρμόζεις στην πράξη αυτό που εξερευνούμε μαζί.</p>
-        </div>
-        <div class="pillar reveal">
-          <div class="pillar-num">ii.</div>
-          <h3>Επιστήμη + Ανθρωπιά</h3>
-          <p>Δεν πιστεύω στη θεραπεία ως τελετουργικό ή στο θεραπευτή ως αδιαπέραστη φιγούρα. Χρησιμοποιώ επιστημονικά αναγνωρισμένα κλινικά πρωτόκολλα ευρωπαϊκής προδιαγραφής — αλλά ο τρόπος που δουλεύω είναι ζεστός, άμεσος και ανθρώπινος. Είμαι εκεί ως σύμμαχος, όχι ως κριτής.</p>
-        </div>
-        <div class="pillar reveal">
-          <div class="pillar-num">iii.</div>
-          <h3>Εμπειρία που κάνει τη διαφορά</h3>
-          <p>Η πορεία μου από τα ψυχιατρικά νοσοκομεία στο ιδιωτικό γραφείο σημαίνει ότι έχω «δει» πολλά. Δεν τρομάζω εύκολα. Αυτό σου δίνει την ελευθερία να φέρεις στο γραφείο ό,τι φοβάσαι να πεις αλλού — γνωρίζοντας ότι θα το αντιμετωπίσω με ψυχραιμία, σεβασμό και επαγγελματισμό.</p>
-        </div>
-        <div class="pillar reveal">
-          <div class="pillar-num">iv.</div>
-          <h3>Ο στόχος: να γίνεις ο θεραπευτής του εαυτού σου</h3>
-          <p>Η θεραπεία δεν είναι ένα μέρος που έρχεσαι για πάντα. Ο σκοπός μου είναι να σε εξοπλίσω με εργαλεία, γνώση και αυτοπεποίθηση — ώστε κάποια στιγμή να μην με χρειάζεσαι πλέον. Αυτή είναι η πιο μεγάλη επιτυχία για εμένα ως θεραπεύτρια.</p>
-        </div>
-      </div>
-
-      <div class="inclusion reveal">
-        <div class="eyebrow">Ασφάλεια & Συμπερίληψη</div>
-        <h3>Ένας χώρος για όλους</h3>
-        <p>Το γραφείο μου είναι ένας χώρος 100% απαλλαγμένος από κρίσεις και στερεότυπα. Δέχομαι ανθρώπους από κάθε υπόβαθρο και ταυτότητα. Προσφέρω επίσης επιβεβαιωτική (affirmative) θεραπεία σε ΛΟΑΤΚΙ+ άτομα — ένα ασφαλές πλαίσιο για την εξερεύνηση της ταυτότητας, μακριά από κοινωνικό στίγμα και διακρίσεις.</p>
-      </div>
-    </div>
-  </section>
-</main>
-
-<!-- CONTACT -->
-<main id="contact" class="page">
-  <section class="block">
-    <div class="container">
-      <div class="section-head reveal">
-        <div class="eyebrow">Επικοινωνία</div>
-        <h2>Κάντε το πρώτο βήμα</h2>
-        <p>Δεν χρειάζεται να έχεις όλες τις απαντήσεις για να επικοινωνήσεις. Αρκεί να νιώθεις ότι κάτι πρέπει να αλλάξει. Συμπλήρωσε τη φόρμα παρακάτω ή επικοινώνησε απευθείας — θα σου απαντήσω σύντομα.</p>
-      </div>
-
-      <div class="contact-grid">
-        <div class="contact-info reveal">
-          <h3>Στοιχεία επικοινωνίας</h3>
-          <div class="contact-meta">
-            <div class="row"><div class="icon">◉</div><div>Μίσθου 2, Τ.Κ. 16121<br/>Καισαριανή, Αθήνα<br/><span style="color:var(--muted);font-size:.88rem">Περιοχή Κάραβελ · Μετρό Ευαγγελισμός</span></div></div>
-            <div class="row"><div class="icon">✆</div><div><a href="tel:+306979665223">+30 697 9665 223</a></div></div>
-            <div class="row"><div class="icon">✉</div><div><a href="mailto:info@mariapliakou.com">info@mariapliakou.com</a></div></div>
-            <div class="row"><div class="icon">⌘</div><div>mariapliakou.com</div></div>
-          </div>
-          <h3>Ωράριο</h3>
-          <p>Δευτέρα – Παρασκευή · 09:00 – 21:00<br/>Σάββατο · κατόπιν ραντεβού</p>
-          <div class="socials">
-            <a href="#" aria-label="Facebook" target="_blank" rel="noopener">
-              <svg viewBox="0 0 24 24"><path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c5.05-.5 9-4.76 9-9.95z"/></svg>
+    <!-- Header / Navbar -->
+    <header>
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <img src="https://raw.githubusercontent.com/agelmet/STRIGKONI/refs/heads/main/unnamed-18.jpg" alt="All Smiles Dental Clinic Logo">
             </a>
-            <a href="#" aria-label="Instagram" target="_blank" rel="noopener">
-              <svg viewBox="0 0 24 24"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.7 3.7 0 01-1.38-.9 3.7 3.7 0 01-.9-1.38c-.16-.42-.36-1.06-.41-2.23C2.17 15.58 2.16 15.2 2.16 12s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41C8.42 2.17 8.8 2.16 12 2.16zM12 0C8.74 0 8.33.01 7.05.07 5.78.13 4.9.33 4.14.63a5.86 5.86 0 00-2.12 1.38A5.86 5.86 0 00.64 4.13C.33 4.9.13 5.78.07 7.05.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.06 1.27.26 2.15.56 2.91.32.8.74 1.48 1.38 2.12.64.64 1.32 1.06 2.12 1.38.76.3 1.64.5 2.91.56C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c1.27-.06 2.15-.26 2.91-.56.8-.32 1.48-.74 2.12-1.38.64-.64 1.06-1.32 1.38-2.12.3-.76.5-1.64.56-2.91.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.06-1.27-.26-2.15-.56-2.91a5.86 5.86 0 00-1.38-2.12A5.86 5.86 0 0019.86.63C19.1.33 18.22.13 16.95.07 15.67.01 15.26 0 12 0zm0 5.84a6.16 6.16 0 100 12.32 6.16 6.16 0 000-12.32zM12 16a4 4 0 110-8 4 4 0 010 8zm6.4-11.85a1.44 1.44 0 100 2.88 1.44 1.44 0 000-2.88z"/></svg>
-            </a>
-          </div>
+            <div class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#about">Η Ιατρός</a></li>
+                <li><a href="#services">Υπηρεσίες</a></li>
+                <li><a href="#philosophy">Φιλοσοφία</a></li>
+                <li><a href="#gallery">Το Ιατρείο</a></li>
+                <li><a href="#reviews">Αξιολογήσεις</a></li>
+                <li><a href="#contact" class="btn btn-primary" style="color: white;">ΚΛΕΙΣΤΕ ΡΑΝΤΕΒΟΥ</a></li>
+            </ul>
         </div>
+    </header>
 
-        <form class="contact-form reveal" id="contactForm">
-          <div class="field"><label for="name">Όνομα *</label><input type="text" id="name" required /></div>
-          <div class="field"><label for="email">Email *</label><input type="email" id="email" required /></div>
-          <div class="field"><label for="phone">Τηλέφωνο (προαιρετικό)</label><input type="tel" id="phone" /></div>
-          <div class="field">
-            <label for="topic">Θέμα</label>
-            <select id="topic">
-              <option>Ατομική ψυχοθεραπεία ενηλίκων</option>
-              <option>Ψυχοθεραπεία εφήβων</option>
-              <option>Συμβουλευτική γονέων</option>
-              <option>Online συνεδρίες</option>
-              <option>Άλλο</option>
-            </select>
-          </div>
-          <div class="field"><label for="message">Μήνυμα *</label><textarea id="message" rows="4" required></textarea></div>
-          <p class="privacy-note">Τα δεδομένα σας χρησιμοποιούνται αποκλειστικά για την επικοινωνία μαζί σας και προστατεύονται σύμφωνα με τον GDPR.</p>
-          <button type="submit" class="btn btn-primary" style="align-self:flex-start">Αποστολή</button>
-          <div class="form-success" id="formSuccess">Σας ευχαριστώ. Το μήνυμά σας στάλθηκε — θα επικοινωνήσω μαζί σας σύντομα.</div>
-        </form>
-      </div>
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content reveal">
+            <h1>All Smiles <span>Dental Clinic</span></h1>
+            <p>Εκεί που η ακαδημαϊκή γνώση συναντά την τεχνολογία αιχμής. Ανακαλύψτε το τέλειο, υγιές σας χαμόγελο με την εξειδικευμένη φροντίδα της Δρ. Άννας Στριγκόνη.</p>
+            <div class="hero-btns">
+                <a href="tel:2109828316" class="btn btn-primary"><i class="fas fa-phone-alt"></i> 21 0982 8316</a>
+                <a href="https://www.doctoranytime.gr/d/Odontiatros/strigkoni-anna" target="_blank" class="btn btn-outline">Online Ραντεβού</a>
+            </div>
+        </div>
+    </section>
 
-      <div class="map-wrap reveal">
-        <iframe loading="lazy" allowfullscreen referrerpolicy="no-referrer-when-downgrade"
-          src="https://www.openstreetmap.org/export/embed.html?bbox=23.7560%2C37.9590%2C23.7700%2C37.9680&layer=mapnik&marker=37.9635%2C23.7630"></iframe>
-      </div>
-    </div>
-  </section>
-</main>
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container about-grid">
+            <div class="about-image reveal">
+                <img src="https://raw.githubusercontent.com/agelmet/STRIGKONI/refs/heads/main/unnamed-17.jpg" alt="Ψηφιακή Οδοντιατρική - Αποτελέσματα στο Laptop">
+            </div>
+            <div class="about-text reveal">
+                <h2>Γνωρίστε την ιατρό,<br>Δρ. Άννα Στριγκόνη</h2>
+                <p>Η Δρ. Άννα Στριγκόνη είναι Χειρουργός Οδοντίατρος και διατηρεί το σύγχρονο οδοντιατρείο <strong>ALL SMILES DENTAL CLINIC</strong> στο Παλαιό Φάληρο. Αποφοίτησε από την Οδοντιατρική Σχολή του ΕΚΠΑ το 2018 και εισήχθη στο απαιτητικό Μεταπτυχιακό πρόγραμμα ειδίκευσης στην Προσθετική και Προσθετική Εμφυτευματολογία. Από το 2018 διατελεί Επιστημονική Συνεργάτης στην Οδοντιατρική Σχολή του ΕΚΠΑ.</p>
+                <p>Στο ιατρείο της, η ακαδημαϊκή γνώση συναντά την τεχνολογία αιχμής, διαθέτοντας <strong>ενδοστοματικό σαρωτή (intraoral scanner)</strong> για ψηφιακές αποτυπώσεις ακριβείας. Με πάνω από 45+ άριστες συστάσεις, εξειδικεύεται σε σύνθετα προσθετικά περιστατικά, επιεμφυτευματική προσθετική, υψηλής αισθητικής θεραπείες και στη διαχείριση κροταφογναθικών διαταραχών.</p>
+                <a href="#services" class="btn btn-outline" style="margin-top: 1rem;">Δείτε τις Υπηρεσίες</a>
+            </div>
+        </div>
+    </section>
 
-<!-- FOOTER -->
-<footer class="site">
-  <div class="container">
-    <div class="foot-grid">
-      <div>
-        <h4>Δομημένη αλλαγή.<br/>Ορατά αποτελέσματα.</h4>
-        <p style="margin-top:18px;max-width:360px">Μαρία Πλιάκου — Κλινική Ψυχολόγος, Ψυχοθεραπεύτρια CBT. Καισαριανή, Αθήνα & Online.</p>
-      </div>
-      <div class="foot-col">
-        <strong>Πλοήγηση</strong>
-        <ul>
-          <li><a data-route="home">Αρχική</a></li>
-          <li><a data-route="about">Σχετικά με εμένα</a></li>
-          <li><a data-route="services">Υπηρεσίες</a></li>
-          <li><a data-route="approach">Θεραπευτική Προσέγγιση</a></li>
-          <li><a data-route="contact">Επικοινωνία</a></li>
-        </ul>
-      </div>
-      <div class="foot-col">
-        <strong>Επικοινωνία</strong>
-        <ul>
-          <li>Μίσθου 2, Καισαριανή</li>
-          <li><a href="tel:+306979665223">+30 697 9665 223</a></li>
-          <li><a href="mailto:info@mariapliakou.com">info@mariapliakou.com</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="foot-bottom">
-      <div>© 2026 Μαρία Πλιάκου. Με επιφύλαξη παντός δικαιώματος.</div>
-      <div>Αρ. Αδείας 12918 / 2-6-2017</div>
-    </div>
-  </div>
-</footer>
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <div class="container">
+            <h2 class="section-title reveal">Οι Υπηρεσίες μας</h2>
+            <p class="section-subtitle reveal">Ολοκληρωμένη οδοντιατρική φροντίδα με εξειδίκευση, σύγχρονο εξοπλισμό και επίκεντρο τον ασθενή.</p>
+            
+            <div class="services-grid">
+                <!-- Service 1 -->
+                <div class="service-card reveal">
+                    <i class="fas fa-tooth service-icon"></i>
+                    <h3>Σύνθετη Προσθετική & Επιεμφυτευματικές Αποκαταστάσεις</h3>
+                    <p>Αντιμετώπιση μερικής ή ολικής απώλειας δοντιών. Σχεδιασμός με απόλυτη ακρίβεια χάρη στον ψηφιακό ενδοστοματικό σαρωτή που εκμηδενίζει τα σφάλματα και την ταλαιπωρία.</p>
+                    <div class="service-tags">Προσθετική | Εμφυτεύματα | 3D Ψηφιακή Αποτύπωση</div>
+                </div>
 
-<script>
-  // Router
-  const pages = document.querySelectorAll('main.page');
-  const navLinks = document.querySelectorAll('nav.links a');
-  function route(target){
-    pages.forEach(p=>p.classList.toggle('is-active', p.id===target));
-    navLinks.forEach(a=>a.classList.toggle('active', a.dataset.route===target));
-    history.replaceState(null,'','#'+target);
-    window.scrollTo({top:0,behavior:'instant'});
-    document.getElementById('mobileMenu').classList.remove('open');
-    // re-trigger reveals
-    setTimeout(()=>document.querySelectorAll('.reveal').forEach(el=>{
-      const r=el.getBoundingClientRect();
-      if(r.top<window.innerHeight) el.classList.add('in');
-    }),50);
-  }
-  document.querySelectorAll('[data-route]').forEach(el=>{
-    el.addEventListener('click',e=>{e.preventDefault();route(el.dataset.route);});
-  });
-  const initial=(location.hash||'#home').slice(1);
-  if(document.getElementById(initial)) route(initial);
+                <!-- Service 2 -->
+                <div class="service-card reveal">
+                    <i class="fas fa-smile-beam service-icon"></i>
+                    <h3>Αισθητική Οδοντιατρική & Σχεδιασμός Χαμόγελου</h3>
+                    <p>Εξατομικευμένες λύσεις (Smile Design). Από λεύκανση και αισθητικά σφραγίσματα, μέχρι λεπτές όψεις πορσελάνης ή ρητίνης για φυσικό και λαμπερό χαμόγελο.</p>
+                    <div class="service-tags">Όψεις Πορσελάνης | Λεύκανση | Αισθητικά Σφραγίσματα</div>
+                </div>
 
-  // Hamburger
-  document.getElementById('hamburger').addEventListener('click',()=>{
-    document.getElementById('mobileMenu').classList.toggle('open');
-  });
+                <!-- Service 3 -->
+                <div class="service-card reveal">
+                    <i class="fas fa-head-side-mask service-icon"></i>
+                    <h3>Κροταφογναθικές Διαταραχές & Βρυγμός</h3>
+                    <p>Αντιμετώπιση στο σφίξιμο ή τρίξιμο δοντιών και πόνο στη γνάθο. Κατασκευή εξατομικευμένων ναρθήκων σύγκλεισης που προστατεύουν τα δόντια και αποφορτίζουν την άρθρωση.</p>
+                    <div class="service-tags">Νάρθηκες Βρυγμού | Ανακούφιση Άρθρωσης</div>
+                </div>
 
-  // Nav scroll
-  window.addEventListener('scroll',()=>{
-    document.getElementById('nav').classList.toggle('scrolled', window.scrollY>20);
-  });
+                <!-- Service 4 -->
+                <div class="service-card reveal">
+                    <i class="fas fa-hands-wash service-icon"></i>
+                    <h3>Προληπτική Οδοντιατρική & Στοματική Υγιεινή</h3>
+                    <p>Η βάση ενός υγιούς χαμόγελου. Ανώδυνος υπερηχητικός καθαρισμός, στίλβωση, φθορίωση και αντιμετώπιση ουλίτιδας, καθώς και εξαγωγές όπου κρίνεται απαραίτητο.</p>
+                    <div class="service-tags">Καθαρισμός | Ουλίτιδα | Στίλβωση</div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-  // Reveal
-  const io = new IntersectionObserver(es=>{
-    es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
-  },{threshold:.12});
-  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+    <!-- Interdisciplinary Approach (Philosophy) -->
+    <section class="philosophy" id="philosophy">
+        <div class="container">
+            <h2 class="section-title reveal">Η Δύναμη της Διεπιστημονικότητας</h2>
+            <p class="section-subtitle reveal">Γιατί η απόλυτη εξειδίκευση οδηγεί στο τέλειο χαμόγελο.</p>
+            
+            <p class="reveal" style="text-align: center; max-width: 900px; margin: 0 auto; opacity: 0.9;">Στη σύγχρονη οδοντιατρική, η αντίληψη ότι ένας μόνο γιατρός μπορεί να εκτελεί το ίδιο άρτια κάθε πράξη έχει ξεπεραστεί. Εφαρμόζουμε ένα αυστηρό μοντέλο διεπιστημονικής συνεργασίας, εξασφαλίζοντας την υψηλότερη δυνατή εξειδίκευση σε κάθε στάδιο της θεραπείας σας.</p>
+            
+            <div class="phil-grid">
+                <div class="phil-card reveal">
+                    <h3>Το Δικό μου Πεδίο</h3>
+                    <p>Αναλαμβάνω αποκλειστικά τον σχεδιασμό, την ψηφιακή αποτύπωση και την τελική τοποθέτηση των προσθετικών εργασιών (στεφάνες, γέφυρες, όψεις, επιεμφυτευματικές αποκαταστάσεις) και τη θεραπεία των κροταφογναθικών διαταραχών. Διασφαλίζω ότι το χαμόγελό σας θα είναι αισθητικά άψογο και απόλυτα εναρμονισμένο με τη σύγκλεισή σας.</p>
+                </div>
+                <div class="phil-card reveal">
+                    <h3>Το Δίκτυο των Ειδικών</h3>
+                    <p>Για πράξεις που απαιτούν διαφορετική κλινική κατάρτιση, συνεργαζόμαστε με κορυφαίους εξωτερικούς συνεργάτες:<br><br>
+                    • Τα χειρουργικά στάδια εμφυτευμάτων & προχωρημένη περιοδοντίτιδα γίνονται από <strong>εξειδικευμένο Περιοδοντολόγο / Χειρουργό</strong>.<br>
+                    • Οι περίπλοκες απονευρώσεις παραπέμπονται σε <strong>Ενδοδοντολόγο</strong> με χρήση μικροσκοπίου.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-  // Form
-  document.getElementById('contactForm').addEventListener('submit',e=>{
-    e.preventDefault();
-    // TODO: wire to backend / mail service
-    document.getElementById('formSuccess').classList.add('show');
-    e.target.reset();
-  });
-</script>
+    <!-- Clinic Gallery -->
+    <section class="gallery" id="gallery">
+        <div class="container">
+            <h2 class="section-title reveal">Ο Χώρος Μας</h2>
+            <p class="section-subtitle reveal">Ένα σύγχρονο, φιλόξενο και άρτια εξοπλισμένο περιβάλλον.</p>
+            
+            <div class="gallery-grid reveal">
+                <div class="gallery-item"><img src="https://raw.githubusercontent.com/agelmet/STRIGKONI/refs/heads/main/unnamed-12.jpg" alt="Είσοδος Ιατρείου"></div>
+                <div class="gallery-item"><img src="https://raw.githubusercontent.com/agelmet/STRIGKONI/refs/heads/main/unnamed-13.jpg" alt="Οδοντιατρική Έδρα"></div>
+                <div class="gallery-item"><img src="https://raw.githubusercontent.com/agelmet/STRIGKONI/refs/heads/main/unnamed-14.jpg" alt="Χώρος Αναμονής"></div>
+                <div class="gallery-item"><img src="https://raw.githubusercontent.com/agelmet/STRIGKONI/refs/heads/main/unnamed-16.jpg" alt="Λεπτομέρεια Έδρας"></div>
+                <div class="gallery-item"><img src="https://raw.githubusercontent.com/agelmet/STRIGKONI/refs/heads/main/unnamed-19.jpg" alt="Σαλόνι"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reviews Section -->
+    <section class="reviews" id="reviews">
+        <div class="container">
+            <h2 class="section-title reveal">Τι Λένε Οι Ασθενείς Μας</h2>
+            <p class="section-subtitle reveal">Έχοντας κερδίσει την εμπιστοσύνη μέσα από 45+ εξαιρετικές συστάσεις (Βαθμολογία 10.0/10).</p>
+
+            <div class="reviews-grid">
+                <!-- Review 1 -->
+                <div class="review-card reveal">
+                    <div class="review-header">
+                        <span class="review-author">ΕΡΜΙΟΝΗ</span>
+                        <div class="review-rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i> 10.0</div>
+                    </div>
+                    <p class="review-text">"Εξαιρετική επαγγελματίας και άνθρωπος. Ασχολήθηκε πραγματικά με προσοχή και ενδιαφέρον με το πρόβλημα σύγκλισης που αντιμετωπίζω... Τη συστήνω ανεπιφύλακτα!"</p>
+                    <div class="review-date">26 Μαΐου 2026</div>
+                </div>
+
+                <!-- Review 2 -->
+                <div class="review-card reveal">
+                    <div class="review-header">
+                        <span class="review-author">Ali</span>
+                        <div class="review-rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i> 10.0</div>
+                    </div>
+                    <p class="review-text">"Best odonthologist here in Athens! I highly recommend her, if you are foreigner, she is the best! I loved her transparency and service."</p>
+                    <div class="review-date">13 Απριλίου 2026</div>
+                </div>
+
+                <!-- Review 3 -->
+                <div class="review-card reveal">
+                    <div class="review-header">
+                        <span class="review-author">Σπυριδούλα</span>
+                        <div class="review-rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i> 10.0</div>
+                    </div>
+                    <p class="review-text">"Η γιατρός ασχολήθηκε με την περίπτωση μας, ήταν πολύ καθησυχαστική και βοηθητική. Μας πρότεινε λύσεις και μας ενέπνευσε εμπιστοσύνη."</p>
+                    <div class="review-date">13 Μαΐου 2026</div>
+                </div>
+
+                 <!-- Review 4 -->
+                 <div class="review-card reveal">
+                    <div class="review-header">
+                        <span class="review-author">Χριστίνα</span>
+                        <div class="review-rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i> 10.0</div>
+                    </div>
+                    <p class="review-text">"Πέρα απο την καταπληκτική της δουλειά έκανε το ακατόρθωτο, πάμε με χαρά στον οδοντίατρο! Ο χώρος πεντακάθαρος και σε κάνει να νιώθεις άνετα."</p>
+                    <div class="review-date">06 Ιουνίου 2026</div>
+                </div>
+
+                <!-- Review 5 -->
+                <div class="review-card reveal">
+                    <div class="review-header">
+                        <span class="review-author">Ναταλία</span>
+                        <div class="review-rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i> 10.0</div>
+                    </div>
+                    <p class="review-text">"Για εμένα η καλύτερη οδοντίατρος που έχω επισκεφθεί ποτέ. Επαγγελματίας, τυπική στο ωράριο, υπομονετική και ήρεμη. Συγχαρητήρια!"</p>
+                    <div class="review-date">17 Απριλίου 2026</div>
+                </div>
+
+                <!-- Review 6 -->
+                <div class="review-card reveal">
+                    <div class="review-header">
+                        <span class="review-author">Ντίνα</span>
+                        <div class="review-rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i> 10.0</div>
+                    </div>
+                    <p class="review-text">"Άψογη, καταρτισμένη, προσιτή. Σου εμπνέει εμπιστοσύνη από το πρώτο ραντεβού."</p>
+                    <div class="review-date">26 Μαΐου 2026</div>
+                </div>
+            </div>
+
+            <div class="reviews-cta reveal">
+                <a href="https://www.doctoranytime.gr/d/Odontiatros/strigkoni-anna#review-section" target="_blank" class="btn btn-outline">Διαβάστε όλες τις αξιολογήσεις</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer / Contact -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-about">
+                    <img src="https://raw.githubusercontent.com/agelmet/STRIGKONI/refs/heads/main/unnamed-18.jpg" alt="All Smiles Logo">
+                    <p>Στο ALL SMILES DENTAL CLINIC, η εξειδίκευση συναντά την ψηφιακή τεχνολογία. Δημιουργούμε υγιή και όμορφα χαμόγελα με απόλυτο σεβασμό στις ανάγκες κάθε ασθενούς.</p>
+                </div>
+                
+                <div class="footer-contact">
+                    <h3 class="footer-title">Επικοινωνία</h3>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> <span>Τρίτωνος 111, Παλαιό Φάληρο,<br>Αττική</span></li>
+                        <li><i class="fas fa-phone-alt"></i> <a href="tel:2109828316">21 0982 8316</a></li>
+                        <li><i class="fas fa-calendar-check"></i> <a href="https://www.doctoranytime.gr/d/Odontiatros/strigkoni-anna" target="_blank" style="text-decoration: underline;">Ραντεβού μέσω DoctorAnytime</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-hours">
+                    <h3 class="footer-title">Το Ιατρείο</h3>
+                    <p style="color: rgba(255,255,255,0.8); margin-bottom: 1rem;">Επικοινωνήστε μαζί μας για να κλείσετε το ραντεβού σας και να ενημερωθείτε για το ωράριο λειτουργίας μας.</p>
+                    <a href="https://www.doctoranytime.gr/d/Odontiatros/strigkoni-anna" target="_blank" class="btn btn-primary">Κλειστε Ραντεβου</a>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2026 All Smiles Dental Clinic | Δρ. Άννα Στριγκόνη. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts for Functionality and Animations -->
+    <script>
+        // Mobile menu toggle
+        const menuBtn = document.querySelector('.mobile-menu-btn');
+        const navLinks = document.querySelector('.nav-links');
+
+        menuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Close mobile menu on link click
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // Scroll Reveal Animation via Intersection Observer
+        const revealElements = document.querySelectorAll('.reveal');
+
+        const revealOptions = {
+            threshold: 0.15,
+            rootMargin: "0px 0px -50px 0px"
+        };
+
+        const revealOnScroll = new IntersectionObserver(function(entries, observer) {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) return;
+                entry.target.classList.add('active');
+                observer.unobserve(entry.target);
+            });
+        }, revealOptions);
+
+        revealElements.forEach(el => {
+            revealOnScroll.observe(el);
+        });
+
+        // Navbar background on scroll
+        const header = document.querySelector('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.style.boxShadow = '0 5px 20px rgba(0,0,0,0.1)';
+            } else {
+                header.style.boxShadow = '0 2px 15px rgba(0,0,0,0.05)';
+            }
+        });
+    </script>
 </body>
 </html>
