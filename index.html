@@ -5,13 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>All Smiles Dental Clinic | Δρ. Άννα Στριγκόνη - Παλαιό Φάληρο</title>
     
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
-    <!-- Font Awesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 
     <style>
         /* CSS Variables for Premium Look */
@@ -583,7 +583,6 @@
 </head>
 <body>
 
-    <!-- Header / Navbar -->
     <header>
         <div class="nav-container">
             <a href="#" class="logo">
@@ -603,11 +602,10 @@
         </div>
     </header>
 
-    <!-- Hero Section -->
     <section class="hero" id="home">
         <div class="hero-content reveal">
-            <h1>All Smiles <span>Dental Clinic</span></h1>
-            <p>Εκεί που η ακαδημαϊκή γνώση συναντά την τεχνολογία αιχμής. Ανακαλύψτε το τέλειο, υγιές σας χαμόγελο με την εξειδικευμένη φροντίδα της Δρ. Άννας Στριγκόνη.</p>
+            <h1 id="dyn-hero-title">All Smiles <span>Dental Clinic</span></h1>
+            <p id="dyn-hero-subtitle">Εκεί που η ακαδημαϊκή γνώση συναντά την τεχνολογία αιχμής. Ανακαλύψτε το τέλειο, υγιές σας χαμόγελο με την εξειδικευμένη φροντίδα της Δρ. Άννας Στριγκόνη.</p>
             <div class="hero-btns">
                 <a href="tel:2109828316" class="btn btn-primary"><i class="fas fa-phone-alt"></i> 21 0982 8316</a>
                 <a href="https://www.doctoranytime.gr/d/Odontiatros/strigkoni-anna" target="_blank" class="btn btn-outline">Online Ραντεβού</a>
@@ -615,29 +613,28 @@
         </div>
     </section>
 
-    <!-- About Section -->
     <section class="about" id="about">
         <div class="container about-grid">
             <div class="about-image reveal">
-                <img src="https://raw.githubusercontent.com/agelmet/STRIGKONI/refs/heads/main/unnamed-17.jpg" alt="Ψηφιακή Οδοντιατρική - Αποτελέσματα στο Laptop">
+                <img id="dyn-about-img" src="https://raw.githubusercontent.com/agelmet/STRIGKONI/refs/heads/main/unnamed-17.jpg" alt="Ψηφιακή Οδοντιατρική - Αποτελέσματα στο Laptop">
             </div>
             <div class="about-text reveal">
-                <h2>Γνωρίστε την ιατρό,<br>Δρ. Άννα Στριγκόνη</h2>
-                <p>Η Δρ. Άννα Στριγκόνη είναι Χειρουργός Οδοντίατρος και διατηρεί το σύγχρονο οδοντιατρείο <strong>ALL SMILES DENTAL CLINIC</strong> στο Παλαιό Φάληρο. Αποφοίτησε από την Οδοντιατρική Σχολή του ΕΚΠΑ το 2018 και εισήχθη στο απαιτητικό Μεταπτυχιακό πρόγραμμα ειδίκευσης στην Προσθετική και Προσθετική Εμφυτευματολογία. Από το 2018 διατελεί Επιστημονική Συνεργάτης στην Οδοντιατρική Σχολή του ΕΚΠΑ.</p>
-                <p>Στο ιατρείο της, η ακαδημαϊκή γνώση συναντά την τεχνολογία αιχμής, διαθέτοντας <strong>ενδοστοματικό σαρωτή (intraoral scanner)</strong> για ψηφιακές αποτυπώσεις ακριβείας. Με πάνω από 45+ άριστες συστάσεις, εξειδικεύεται σε σύνθετα προσθετικά περιστατικά, επιεμφυτευματική προσθετική, υψηλής αισθητικής θεραπείες και στη διαχείριση κροταφογναθικών διαταραχών.</p>
+                <h2 id="dyn-about-title">Γνωρίστε την ιατρό,<br>Δρ. Άννα Στριγκόνη</h2>
+                <div id="dyn-about-text">
+                    <p>Η Δρ. Άννα Στριγκόνη είναι Χειρουργός Οδοντίατρος και διατηρεί το σύγχρονο οδοντιατρείο <strong>ALL SMILES DENTAL CLINIC</strong> στο Παλαιό Φάληρο. Αποφοίτησε από την Οδοντιατρική Σχολή του ΕΚΠΑ το 2018 και εισήχθη στο απαιτητικό Μεταπτυχιακό πρόγραμμα ειδίκευσης στην Προσθετική και Προσθετική Εμφυτευματολογία. Από το 2018 διατελεί Επιστημονική Συνεργάτης στην Οδοντιατρική Σχολή του ΕΚΠΑ.</p>
+                    <p>Στο ιατρείο της, η ακαδημαϊκή γνώση συναντά την τεχνολογία αιχμής, διαθέτοντας <strong>ενδοστοματικό σαρωτή (intraoral scanner)</strong> για ψηφιακές αποτυπώσεις ακριβείας. Με πάνω από 45+ άριστες συστάσεις, εξειδικεύεται σε σύνθετα προσθετικά περιστατικά, επιεμφυτευματική προσθετική, υψηλής αισθητικής θεραπείες και στη διαχείριση κροταφογναθικών διαταραχών.</p>
+                </div>
                 <a href="#services" class="btn btn-outline" style="margin-top: 1rem;">Δείτε τις Υπηρεσίες</a>
             </div>
         </div>
     </section>
 
-    <!-- Services Section -->
     <section class="services" id="services">
         <div class="container">
             <h2 class="section-title reveal">Οι Υπηρεσίες μας</h2>
             <p class="section-subtitle reveal">Ολοκληρωμένη οδοντιατρική φροντίδα με εξειδίκευση, σύγχρονο εξοπλισμό και επίκεντρο τον ασθενή.</p>
             
             <div class="services-grid">
-                <!-- Service 1 -->
                 <div class="service-card reveal">
                     <i class="fas fa-tooth service-icon"></i>
                     <h3>Σύνθετη Προσθετική & Επιεμφυτευματικές Αποκαταστάσεις</h3>
@@ -645,7 +642,6 @@
                     <div class="service-tags">Προσθετική | Εμφυτεύματα | 3D Ψηφιακή Αποτύπωση</div>
                 </div>
 
-                <!-- Service 2 -->
                 <div class="service-card reveal">
                     <i class="fas fa-smile-beam service-icon"></i>
                     <h3>Αισθητική Οδοντιατρική & Σχεδιασμός Χαμόγελου</h3>
@@ -653,7 +649,6 @@
                     <div class="service-tags">Όψεις Πορσελάνης | Λεύκανση | Αισθητικά Σφραγίσματα</div>
                 </div>
 
-                <!-- Service 3 -->
                 <div class="service-card reveal">
                     <i class="fas fa-head-side-mask service-icon"></i>
                     <h3>Κροταφογναθικές Διαταραχές & Βρυγμός</h3>
@@ -661,7 +656,6 @@
                     <div class="service-tags">Νάρθηκες Βρυγμού | Ανακούφιση Άρθρωσης</div>
                 </div>
 
-                <!-- Service 4 -->
                 <div class="service-card reveal">
                     <i class="fas fa-hands-wash service-icon"></i>
                     <h3>Προληπτική Οδοντιατρική & Στοματική Υγιεινή</h3>
@@ -672,7 +666,6 @@
         </div>
     </section>
 
-    <!-- Interdisciplinary Approach (Philosophy) -->
     <section class="philosophy" id="philosophy">
         <div class="container">
             <h2 class="section-title reveal">Η Δύναμη της Διεπιστημονικότητας</h2>
@@ -695,7 +688,6 @@
         </div>
     </section>
 
-    <!-- Clinic Gallery -->
     <section class="gallery" id="gallery">
         <div class="container">
             <h2 class="section-title reveal">Ο Χώρος Μας</h2>
@@ -711,14 +703,12 @@
         </div>
     </section>
 
-    <!-- Reviews Section -->
     <section class="reviews" id="reviews">
         <div class="container">
             <h2 class="section-title reveal">Τι Λένε Οι Ασθενείς Μας</h2>
             <p class="section-subtitle reveal">Έχοντας κερδίσει την εμπιστοσύνη μέσα από 45+ εξαιρετικές συστάσεις (Βαθμολογία 10.0/10).</p>
 
             <div class="reviews-grid">
-                <!-- Review 1 -->
                 <div class="review-card reveal">
                     <div class="review-header">
                         <span class="review-author">ΕΡΜΙΟΝΗ</span>
@@ -728,7 +718,6 @@
                     <div class="review-date">26 Μαΐου 2026</div>
                 </div>
 
-                <!-- Review 2 -->
                 <div class="review-card reveal">
                     <div class="review-header">
                         <span class="review-author">Ali</span>
@@ -738,7 +727,6 @@
                     <div class="review-date">13 Απριλίου 2026</div>
                 </div>
 
-                <!-- Review 3 -->
                 <div class="review-card reveal">
                     <div class="review-header">
                         <span class="review-author">Σπυριδούλα</span>
@@ -748,7 +736,6 @@
                     <div class="review-date">13 Μαΐου 2026</div>
                 </div>
 
-                 <!-- Review 4 -->
                  <div class="review-card reveal">
                     <div class="review-header">
                         <span class="review-author">Χριστίνα</span>
@@ -758,7 +745,6 @@
                     <div class="review-date">06 Ιουνίου 2026</div>
                 </div>
 
-                <!-- Review 5 -->
                 <div class="review-card reveal">
                     <div class="review-header">
                         <span class="review-author">Ναταλία</span>
@@ -768,7 +754,6 @@
                     <div class="review-date">17 Απριλίου 2026</div>
                 </div>
 
-                <!-- Review 6 -->
                 <div class="review-card reveal">
                     <div class="review-header">
                         <span class="review-author">Ντίνα</span>
@@ -785,7 +770,6 @@
         </div>
     </section>
 
-    <!-- Footer / Contact -->
     <footer id="contact">
         <div class="container">
             <div class="footer-grid">
@@ -816,9 +800,39 @@
         </div>
     </footer>
 
-    <!-- Scripts for Functionality and Animations -->
     <script>
-        // Mobile menu toggle
+        // --- CONTENT MANAGEMENT ENGINE ---
+        async function loadSiteContent() {
+            try {
+                const res = await fetch('/content.json');
+                if (res.ok) {
+                    const data = await res.json();
+                    
+                    // Inject Hero Edits
+                    if(data.hero_title) document.getElementById('dyn-hero-title').innerHTML = data.hero_title;
+                    if(data.hero_subtitle) document.getElementById('dyn-hero-subtitle').innerText = data.hero_subtitle;
+                    if(data.hero_image) {
+                        document.getElementById('home').style.backgroundImage = `linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0) 30%, rgba(255,255,255,0.9) 60%, rgba(255,255,255,1) 100%), url('${data.hero_image}')`;
+                    }
+
+                    // Inject About Edits
+                    if(data.about_title) document.getElementById('dyn-about-title').innerHTML = data.about_title;
+                    if(data.about_text) {
+                        const formattedText = data.about_text.split('\n\n').map(p => `<p>${p}</p>`).join('');
+                        document.getElementById('dyn-about-text').innerHTML = formattedText;
+                    }
+                    if(data.about_image) document.getElementById('dyn-about-img').src = data.about_image;
+                }
+            } catch (err) {
+                console.log("Using default code content. CMS not active yet.");
+            }
+        }
+
+        // Fire the content engine immediately
+        window.addEventListener('DOMContentLoaded', loadSiteContent);
+
+
+        // --- EXISTING UI SCRIPTS ---
         const menuBtn = document.querySelector('.mobile-menu-btn');
         const navLinks = document.querySelector('.nav-links');
 
@@ -826,16 +840,13 @@
             navLinks.classList.toggle('active');
         });
 
-        // Close mobile menu on link click
         document.querySelectorAll('.nav-links a').forEach(link => {
             link.addEventListener('click', () => {
                 navLinks.classList.remove('active');
             });
         });
 
-        // Scroll Reveal Animation via Intersection Observer
         const revealElements = document.querySelectorAll('.reveal');
-
         const revealOptions = {
             threshold: 0.15,
             rootMargin: "0px 0px -50px 0px"
@@ -853,7 +864,6 @@
             revealOnScroll.observe(el);
         });
 
-        // Navbar background on scroll
         const header = document.querySelector('header');
         window.addEventListener('scroll', () => {
             if (window.scrollY > 50) {
@@ -862,6 +872,17 @@
                 header.style.boxShadow = '0 2px 15px rgba(0,0,0,0.05)';
             }
         });
+
+        // Netlify Identity Login Bridge
+        if (window.netlifyIdentity) {
+            window.netlifyIdentity.on("init", user => {
+                if (!user) {
+                    window.netlifyIdentity.on("login", () => {
+                        document.location.href = "/admin/";
+                    });
+                }
+            });
+        }
     </script>
 </body>
 </html>
