@@ -1,0 +1,23 @@
+backend:
+  name: git-gateway
+  branch: main # Or master, depending on your GitHub setup
+
+# Where the client's uploaded images get saved
+media_folder: "images/uploads"
+public_folder: "/images/uploads"
+
+collections:
+  - name: "pages"
+    label: "Διαχείριση Ιστοσελίδας"
+    files:
+      - file: "content.json"
+        label: "Αρχική Σελίδα (Κείμενα & Εικόνες)"
+        name: "home"
+        fields:
+          - { label: "Hero Τίτλος (Χρησιμοποιήστε <span>λέξη</span> για χρυσό χρώμα)", name: "hero_title", widget: "string", required: false }
+          - { label: "Hero Υπότιτλος", name: "hero_subtitle", widget: "text", required: false }
+          - { label: "Hero Εικόνα Φόντου", name: "hero_image", widget: "image", required: false }
+          
+          - { label: "Σχετικά με την Ιατρό - Τίτλος", name: "about_title", widget: "string", required: false }
+          - { label: "Σχετικά με την Ιατρό - Κείμενο", name: "about_text", widget: "text", required: false }
+          - { label: "Σχετικά με την Ιατρό - Εικόνα", name: "about_image", widget: "image", required: false }
