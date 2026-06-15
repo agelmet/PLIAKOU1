@@ -12,150 +12,222 @@
     <style>
         *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
         :root {
-            /* Νέα Παλέτα: Σπασμένο λευκό, Cypress Green & Απαλή Μέντα */
-            --broken-white: #fdfdfc;
-            --cypress: #1b362c;
-            --cypress-light: #2c5244;
-            --cypress-faded: #416b5a;
-            --mint: #c0d8ce;
-            --mint-dark: #a9c5b9;
-            --mint-faint: #e6f0ec;
+            /* Νέα Παλέτα: Broken White Background, Cypress Green Text, Soft Mint Accents */
+            --stone-50: #fbfcfb; 
+            --stone-100: #f0f4f2; 
+            --stone-200: #e1e9e5; 
+            --stone-300: #cdd8d3;
             
+            /* Σκούρο πράσινο / Κυπαρισσί για τα κείμενα */
+            --stone-400: #7b9488; 
+            --stone-500: #4a6357; 
+            --stone-600: #334a3e; 
+            --stone-700: #21362a; 
+            --stone-800: #16261d; 
+            --stone-900: #0d1711;
+            
+            /* Απαλή μέντα για κουμπιά και accents */
+            --sage: #b7d5ca; 
+            --sage-light: #d6e8e1; 
+            --sage-muted: #eaf3f0; 
+            --sage-deep: #82ab9a; 
+            
+            --cream: #fafcfb; /* Broken White */
             --serif: 'Cormorant Garamond', Georgia, serif;
             --sans: 'Manrope', system-ui, sans-serif;
             --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
         }
         
         html { scroll-behavior: smooth; font-size: 16px; }
-        body { 
-            font-family: var(--sans); 
-            background: var(--broken-white); 
-            color: var(--cypress); 
-            line-height: 1.8; 
-            font-weight: 400; 
-            overflow-x: hidden; 
-            -webkit-font-smoothing: antialiased; 
-            position: relative;
-        }
+        body { font-family: var(--sans); background: var(--cream); color: var(--stone-700); line-height: 1.7; font-weight: 300; overflow-x: hidden; -webkit-font-smoothing: antialiased; position: relative; }
         
-        /* Watermark Logo στο κάτω μέρος της σελίδας */
-        body::before {
-            content: '';
+        /* Πλήρης στοίχιση (Justify) για τα κύρια κείμενα */
+        p.justified { text-align: justify; hyphens: auto; }
+
+        ::selection { background: var(--sage-light); color: var(--stone-800); }
+        img { max-width: 100%; display: block; }
+        a { text-decoration: none; color: inherit; }
+        button { border: none; background: none; cursor: pointer; font-family: inherit; }
+        .container { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 clamp(1.5rem, 4vw, 3rem); }
+        
+        .label { font-family: var(--sans); font-size: 0.75rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--stone-500); }
+        .section-title { font-family: var(--serif); font-size: clamp(2rem, 4.5vw, 3.5rem); font-weight: 400; color: var(--stone-800); line-height: 1.15; }
+        .section-subtitle { font-size: 0.95rem; color: var(--stone-500); max-width: 560px; line-height: 1.8; }
+
+        /* Υδατογράφημα στο κάτω μέρος της σελίδας */
+        .page-watermark {
             position: absolute;
-            bottom: 2%;
-            right: -5%;
-            width: 600px;
-            height: 600px;
-            background-image: url('https://github.com/agelmet/TAVANLI/blob/main/tavlogo.png?raw=true');
-            background-size: contain;
-            background-repeat: no-repeat;
-            opacity: 0.04;
+            bottom: 5%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60vw;
+            max-width: 800px;
+            opacity: 0.03;
             pointer-events: none;
             z-index: 0;
         }
 
-        ::selection { background: var(--mint); color: var(--cypress); }
-        img { max-width: 100%; display: block; }
-        a { text-decoration: none; color: inherit; }
-        button { border: none; background: none; cursor: pointer; font-family: inherit; }
-        
-        /* Πλήρης στοίχιση στο κυρίως κείμενο */
-        p { text-align: justify; margin-bottom: 1.5rem; }
-        
-        .container { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 clamp(1.5rem, 4vw, 3rem); position: relative; z-index: 1; }
-        .label { font-family: var(--sans); font-size: 0.75rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--cypress-light); margin-bottom: 1rem; display: inline-block; }
-        .section-title { font-family: var(--serif); font-size: clamp(2rem, 4.5vw, 3.5rem); font-weight: 400; color: var(--cypress); line-height: 1.15; margin-bottom: 2rem; }
-        .section-subtitle { font-size: 1.05rem; color: var(--cypress-faded); line-height: 1.8; text-align: justify; }
-
         @keyframes fadeUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes scaleIn { from { opacity: 0; transform: scale(0.92); } to { opacity: 1; transform: scale(1); } }
+        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
+        @keyframes glowingText { 0% { text-shadow: 0 0 10px rgba(183,213,202,0.2); } 100% { text-shadow: 0 0 30px rgba(183,213,202,0.6); } }
 
         .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.9s var(--ease-out), transform 0.9s var(--ease-out); }
         .reveal.visible { opacity: 1; transform: translateY(0); }
         .reveal-delay-1 { transition-delay: 0.1s; } .reveal-delay-2 { transition-delay: 0.2s; }
 
         /* ═══ HEADER ═══ */
-        .header { position:fixed; top:0; left:0; right:0; z-index:1000; padding:1rem 0; transition:all 0.5s var(--ease-out); }
-        .header.scrolled { background:rgba(253, 253, 252, 0.95); backdrop-filter:blur(15px); -webkit-backdrop-filter:blur(15px); padding:0.5rem 0; box-shadow:0 1px 0 rgba(27, 54, 44, 0.05); }
+        .header { position:fixed; top:0; left:0; right:0; z-index:1000; padding:1.25rem 0; transition:all 0.5s var(--ease-out); }
+        .header.scrolled { background:rgba(250,252,251,0.95); backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px); padding:0.75rem 0; box-shadow:0 1px 0 rgba(0,0,0,0.04); }
         .header-inner { display:flex; align-items:center; justify-content:space-between; }
         .logo-link { display:flex; align-items:center; gap:1rem; }
-        /* Διπλασιασμός του Logo (>= 60x60) */
-        .logo-avatar { width:auto; height:70px; object-fit:contain; transition:transform 0.4s var(--ease-out); }
-        .logo-link:hover .logo-avatar { transform:scale(1.05); }
-        .logo-text { display:flex; flex-direction:column; }
-        .logo-name { font-family:var(--serif); font-size:1.25rem; font-weight:600; color:var(--cypress); line-height:1.2; }
         
+        /* Διπλασιασμός Logo */
+        .logo-avatar { width:60px; height:60px; object-fit:contain; transition:all 0.4s var(--ease-out); }
+        
+        .logo-text { display:flex; flex-direction:column; }
+        .logo-name { font-family:var(--serif); font-size:1.15rem; font-weight:600; color:var(--stone-800); line-height:1.2; }
+        .logo-role { font-size:0.6rem; font-weight:500; letter-spacing:0.15em; text-transform:uppercase; color: var(--stone-500); }
+        
+        /* Μεγαλύτερη γραμματοσειρά στο Μενού */
         .nav-desktop { display:flex; align-items:center; gap:2.5rem; }
-        /* Αυξημένο μέγεθος γραμματοσειράς στο Μενού */
-        .nav-desktop a { font-size:0.85rem; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:var(--cypress-light); position:relative; transition:color 0.3s; }
-        .nav-desktop a::after { content:''; position:absolute; bottom:-4px; left:0; width:0; height:2px; background:var(--mint); transition:width 0.4s var(--ease-out); }
-        .nav-desktop a:hover { color:var(--cypress); }
+        .nav-desktop a { font-size:0.85rem; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:var(--stone-700); position:relative; transition:color 0.3s; }
+        .nav-desktop a::after { content:''; position:absolute; bottom:-4px; left:0; width:0; height:1.5px; background:var(--sage); transition:width 0.4s var(--ease-out); }
+        .nav-desktop a:hover { color:var(--stone-900); }
         .nav-desktop a:hover::after { width:100%; }
         
-        .nav-cta { background:var(--mint)!important; color:var(--cypress)!important; padding:0.75rem 1.8rem; border-radius:100px; transition:all 0.4s var(--ease-out); }
+        .nav-cta { display:inline-flex; align-items:center; gap:0.5rem; padding:0.75rem 1.75rem; background:var(--sage); color:var(--stone-800)!important; border-radius:100px; font-weight:600!important; transition:all 0.4s var(--ease-out); }
         .nav-cta::after { display:none!important; }
-        .nav-cta:hover { background:var(--mint-dark)!important; transform:translateY(-2px); box-shadow:0 8px 25px rgba(192, 216, 206, 0.4); }
-
+        .nav-cta:hover { background:var(--sage-deep)!important; color:#ffffff!important; transform:translateY(-1px); box-shadow:0 8px 30px rgba(183,213,202,0.4); }
+        
         .hamburger { display:none; flex-direction:column; gap:5px; padding:8px; z-index:1001; }
-        .hamburger span { width:24px; height:2px; background:var(--cypress); transition:all 0.3s var(--ease-out); }
-        .nav-mobile { display:none; position:fixed; inset:0; background:var(--broken-white); z-index:999; flex-direction:column; align-items:center; justify-content:center; gap:2rem; opacity:0; pointer-events:none; transition:opacity 0.4s; }
+        .hamburger span { width:24px; height:1.5px; background:var(--stone-700); transition:all 0.3s var(--ease-out); transform-origin:center; }
+        .hamburger.active span:nth-child(1) { transform:rotate(45deg) translate(4px,5px); }
+        .hamburger.active span:nth-child(2) { opacity:0; }
+        .hamburger.active span:nth-child(3) { transform:rotate(-45deg) translate(4px,-5px); }
+        
+        .nav-mobile { display:none; position:fixed; top:0; left:0; right:0; bottom:0; background:var(--cream); z-index:999; flex-direction:column; align-items:center; justify-content:center; gap:2rem; opacity:0; pointer-events:none; transition:opacity 0.4s; }
         .nav-mobile.open { opacity:1; pointer-events:all; }
-        .nav-mobile a { font-family:var(--serif); font-size:1.8rem; font-weight:400; color:var(--cypress); }
-        @media(max-width:1024px) { .nav-desktop{display:none} .hamburger{display:flex} .nav-mobile{display:flex} }
-
-        /* Κοινό Style για Buttons / Accent Lines */
-        .btn-primary { display:inline-flex; align-items:center; justify-content:center; gap:0.75rem; padding:1.2rem 2.5rem; background:var(--mint); color:var(--cypress); border-radius:100px; font-size:0.8rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; transition:all 0.4s var(--ease-out); border: 1px solid transparent; }
-        .btn-primary:hover { background:var(--mint-dark); transform:translateY(-2px); box-shadow:0 12px 30px rgba(192, 216, 206, 0.5); }
-        .accent-line { width: 60px; height: 3px; background: var(--mint); margin: 1.5rem 0; border-radius: 2px; }
+        .nav-mobile a { font-family:var(--serif); font-size:1.8rem; font-weight:300; color:var(--stone-700); transition:color 0.3s; }
+        .nav-mobile a:hover { color:var(--sage-deep); }
+        @media(max-width:900px) { .nav-desktop{display:none} .hamburger{display:flex} .nav-mobile{display:flex} }
 
         /* ═══ HERO ═══ */
-        .hero { min-height:100vh; display:grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items:center; padding-top:100px; overflow:hidden; }
+        .hero { min-height:100vh; display:flex; align-items:center; justify-content:center; position:relative; overflow:hidden; padding-top:100px; }
+        .hero-inner { display:grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items:center; position:relative; z-index:1; }
         .hero-content { animation:fadeUp 1s var(--ease-out) 0.2s both; }
-        .hero-image { width: 100%; height: auto; max-height: 80vh; object-fit: cover; border-radius: 20px 100px 20px 100px; border: 4px solid var(--mint-faint); box-shadow: 0 20px 50px rgba(27, 54, 44, 0.08); animation:fadeUp 1s var(--ease-out) 0.4s both; }
-        @media(max-width:900px) { .hero { grid-template-columns: 1fr; text-align: center; padding-top: 150px; } .hero p { text-align: center; } .hero-image { order: -1; max-width: 400px; margin: 0 auto; } }
+        .hero-label { display:inline-flex; align-items:center; gap:0.75rem; margin-bottom:1.5rem; }
+        .hero-label-line { width:40px; height:1px; background:var(--sage-deep); }
+        .hero-label-text { font-size:0.65rem; font-weight:600; letter-spacing:0.2em; text-transform:uppercase; color:var(--stone-600); }
+        .hero-title { font-family:var(--serif); font-size:clamp(2.5rem,5.5vw,4.5rem); font-weight:400; color:var(--stone-800); line-height:1.1; margin-bottom:1.5rem; }
+        .hero-title em { font-style:italic; color: var(--sage-deep); }
+        .hero-desc { font-size:1.05rem; color:var(--stone-600); max-width:480px; line-height:1.9; margin-bottom: 2.5rem; }
+        .hero-actions { display:flex; align-items:center; gap:1.5rem; flex-wrap:wrap; }
+        
+        .btn-primary { display:inline-flex; align-items:center; gap:0.75rem; padding:1.1rem 2.5rem; background:var(--sage); color:var(--stone-800); border-radius:100px; font-size:0.75rem; font-weight:600; letter-spacing:0.15em; text-transform:uppercase; transition:all 0.4s var(--ease-out); }
+        .btn-primary:hover { background:var(--sage-deep); color:#ffffff; transform:translateY(-2px); box-shadow:0 12px 30px rgba(183,213,202,0.4); }
+        .btn-primary svg { width:16px; height:16px; transition:transform 0.3s var(--ease-out); }
+        .btn-primary:hover svg { transform:translateX(3px); }
+        
+        .hero-visual { position: relative; display: flex; justify-content: center; animation:scaleIn 1s var(--ease-out) 0.4s both; }
+        .hero-image-wrap { position: relative; width: 100%; max-width: 400px; border-radius: 24px; overflow: hidden; box-shadow: 0 30px 60px rgba(0,0,0,0.05); }
+        .hero-image-wrap img { width: 100%; height: auto; object-fit: cover; }
+        .hero-accent-shape { position: absolute; top: -20px; right: -20px; width: 100%; height: 100%; border: 2px solid var(--sage); border-radius: 24px; z-index: -1; }
+
+        @media(max-width:900px) {
+            .hero-inner { grid-template-columns: 1fr; text-align: center; }
+            .hero-content { order: 2; align-items: center; }
+            .hero-visual { order: 1; }
+            .hero-desc { margin: 0 auto 2.5rem; }
+        }
 
         /* ═══ ABOUT & SYSTEMIC ═══ */
-        .text-section { padding: clamp(4rem, 8vw, 6rem) 0; border-bottom: 1px solid var(--mint-faint); }
-        .text-section-inner { max-width: 900px; margin: 0 auto; }
+        .content-section { padding:clamp(5rem,10vw,8rem) 0; }
+        .about-inner { display:grid; grid-template-columns:0.4fr 0.6fr; gap:clamp(3rem,6vw,6rem); align-items:center; }
+        .about-image-col { position:relative; }
+        .about-image-wrap { border-radius:24px; overflow:hidden; box-shadow:0 30px 80px rgba(0,0,0,0.07); animation:float 7s ease-in-out infinite; background:#ffffff; padding: 1rem; }
+        .about-image-wrap img { width:100%; height:auto; object-fit:contain; border-radius: 16px; }
+        .about-image-accent { position:absolute; top:-15px; left:-15px; width:100%; height:100%; border-radius:24px; border:1px solid var(--sage); z-index:-1; }
         
+        .content-block h2 { margin-bottom:2rem; }
+        .content-text { font-size:1rem; color:var(--stone-600); line-height:1.9; margin-bottom:1.5rem; }
+        
+        .systemic-inner { max-width: 900px; margin: 0 auto; }
+        .systemic-header { text-align: center; margin-bottom: 3rem; }
+
+        @media(max-width:900px) { .about-inner{grid-template-columns:1fr} .about-image-col{max-width:320px;margin:0 auto} }
+
         /* ═══ SERVICES ═══ */
-        .services { padding: clamp(5rem, 10vw, 8rem) 0; background: var(--mint-faint); border-radius: 40px; margin: 2rem 0; }
-        .services-header { text-align: center; margin-bottom: 4rem; }
-        .services-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; }
-        .service-card { background: var(--broken-white); border-radius: 20px; padding: 3rem; transition: transform 0.4s var(--ease-out), box-shadow 0.4s; border-left: 4px solid var(--mint); }
-        .service-card:hover { transform: translateY(-5px); box-shadow: 0 15px 40px rgba(27, 54, 44, 0.06); }
-        .service-card h3 { font-family: var(--serif); font-size: 1.6rem; color: var(--cypress); margin-bottom: 0.5rem; }
-        .service-duration { font-size: 0.8rem; font-weight: 700; color: var(--cypress-light); margin-bottom: 1.5rem; display: inline-block; background: var(--mint-faint); padding: 0.3rem 0.8rem; border-radius: 100px; }
-        @media(max-width:768px) { .services-grid { grid-template-columns: 1fr; } }
+        .services { padding:clamp(5rem,10vw,8rem) 0; background:var(--stone-100); position:relative; }
+        .services-header { text-align:center; margin-bottom:4rem; position:relative; z-index:1; }
+        .services-header .label { margin-bottom:1rem; display:block; }
+        .services-header .section-title { margin-bottom:1rem; }
+        .services-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:1.5rem; position:relative; z-index:1; }
+        
+        .service-card { background:#ffffff; border:1px solid var(--stone-200); border-radius:20px; padding:2.5rem; transition:all 0.5s var(--ease-out); position:relative; overflow:hidden; }
+        .service-card::after { content:''; position:absolute; bottom:0; left:0; height:3px; width:0; background:var(--sage); transition:width 0.4s var(--ease-out); }
+        .service-card:hover { transform:translateY(-4px); box-shadow:0 15px 40px rgba(0,0,0,0.04); }
+        .service-card:hover::after { width:100%; }
+        
+        .service-card h3 { font-family:var(--serif); font-size:1.45rem; font-weight:600; color:var(--stone-800); margin-bottom:0.5rem; }
+        .service-includes { font-size:0.75rem; color:var(--stone-500); font-weight:600; letter-spacing:0.05em; margin-bottom:1.25rem; display: inline-block; padding: 0.3rem 0.8rem; background: var(--sage-muted); border-radius: 100px; }
+        .service-card p { font-size:0.95rem; color:var(--stone-600); line-height:1.8; }
+        @media(max-width:768px) { .services-grid{grid-template-columns:1fr} }
 
         /* ═══ FAQ ═══ */
-        .faq { padding: clamp(5rem, 10vw, 8rem) 0; }
+        .faq { padding:clamp(5rem,10vw,8rem) 0; }
         .faq-inner { max-width: 800px; margin: 0 auto; }
-        .faq-item { margin-bottom: 3rem; }
-        .faq-question { font-family: var(--serif); font-size: 1.5rem; font-weight: 600; color: var(--cypress); margin-bottom: 1rem; border-bottom: 2px solid var(--mint); padding-bottom: 0.5rem; display: inline-block; }
+        .faq-header { text-align: center; margin-bottom: 4rem; }
+        .faq-item { margin-bottom: 3rem; padding-bottom: 2rem; border-bottom: 1px solid var(--stone-200); }
+        .faq-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+        .faq-question { font-family: var(--serif); font-size: 1.4rem; font-weight: 600; color: var(--stone-800); margin-bottom: 1rem; line-height: 1.3; }
+        .faq-answer { font-size: 0.95rem; color: var(--stone-600); line-height: 1.8; }
 
         /* ═══ REVIEWS ═══ */
-        .reviews { padding: clamp(5rem, 10vw, 8rem) 0; background: var(--mint-faint); border-radius: 40px; margin: 2rem 0; }
-        .reviews-header { text-align: center; margin-bottom: 4rem; }
-        .reviews-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; }
-        .review-card { background: var(--broken-white); padding: 2.5rem; border-radius: 20px; border: 1px solid var(--mint); }
-        .review-text { font-style: italic; color: var(--cypress-faded); margin-bottom: 1.5rem; }
-        .review-author { font-weight: 700; color: var(--cypress); display: flex; align-items: center; gap: 0.5rem; }
-        .review-author::before { content: ''; width: 20px; height: 2px; background: var(--mint); }
+        .reviews { padding:clamp(5rem,10vw,8rem) 0; background:var(--sage-muted); }
+        .reviews-header { text-align:center; margin-bottom:4rem; }
+        .reviews-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; max-width: 1000px; margin: 0 auto; position: relative; z-index: 1; }
+        .review-card { background:#ffffff; border:1px solid var(--stone-200); border-radius:20px; padding:2.5rem; transition:all 0.3s; }
+        .review-card:hover { transform:translateY(-4px); box-shadow:0 20px 50px rgba(183,213,202,0.3); }
+        .review-text { font-size:0.95rem; font-style: italic; color:var(--stone-600); line-height:1.8; margin-bottom:1.5rem; }
+        .review-author { font-size:0.85rem; font-weight:600; color:var(--stone-800); text-transform:uppercase; letter-spacing:0.1em; display: flex; align-items: center; gap: 0.5rem; }
+        .review-author::before { content:''; display:block; width:20px; height:2px; background:var(--sage); }
 
         /* ═══ CONTACT ═══ */
-        .contact { padding: clamp(5rem, 10vw, 8rem) 0; }
-        .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; margin-top: 3rem; }
-        .contact-form { display: flex; flex-direction: column; gap: 1.25rem; }
-        .contact-form input, .contact-form textarea { width: 100%; padding: 1rem 1.25rem; background: var(--broken-white); border: 1px solid var(--mint-dark); border-radius: 12px; font-family: var(--sans); font-size: 0.95rem; color: var(--cypress); transition: border-color 0.3s; }
-        .contact-form input:focus, .contact-form textarea:focus { outline: none; border-color: var(--cypress); box-shadow: 0 0 0 4px var(--mint-faint); }
-        .contact-alt { background: var(--mint-faint); padding: 3rem; border-radius: 20px; text-align: center; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 1.5rem; }
-        .contact-alt p { text-align: center; }
-        .business-card-wrap img { width: 100%; max-width: 400px; margin: 2rem auto 0; border-radius: 12px; box-shadow: 0 20px 40px rgba(27, 54, 44, 0.1); }
-        .footer-note { text-align: center; margin-top: 3rem; font-weight: 600; color: var(--cypress-light); }
-        @media(max-width:768px) { .contact-grid { grid-template-columns: 1fr; } }
+        .contact { padding:clamp(5rem,10vw,8rem) 0; position:relative; overflow:hidden; }
+        .contact-header { text-align:center; margin-bottom:4rem; max-width: 700px; margin-left: auto; margin-right: auto; }
+        
+        .contact-two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; max-width: 1000px; margin: 0 auto 4rem; }
+        
+        .contact-form { background: #ffffff; padding: 2.5rem; border-radius: 24px; border: 1px solid var(--stone-200); box-shadow: 0 20px 40px rgba(0,0,0,0.03); }
+        .contact-form input, .contact-form textarea { width: 100%; padding: 1rem 1.25rem; margin-bottom: 1.25rem; border: 1px solid var(--stone-200); border-radius: 12px; font-family: inherit; font-size: 0.9rem; color: var(--stone-800); background: var(--cream); outline: none; transition: border-color 0.3s; }
+        .contact-form input:focus, .contact-form textarea:focus { border-color: var(--sage-deep); }
+        .contact-form button { width: 100%; justify-content: center; }
+
+        .contact-alt { display: flex; flex-direction: column; justify-content: center; }
+        .contact-alt-text { font-size: 1.05rem; color: var(--stone-600); line-height: 1.8; margin-bottom: 2rem; }
+        .social-buttons { display: flex; gap: 1rem; margin-bottom: 3rem; }
+        .btn-mint { display: inline-flex; align-items: center; justify-content: center; padding: 0.8rem 1.5rem; background: var(--sage); color: var(--stone-800); border-radius: 100px; font-weight: 600; font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; transition: all 0.3s; flex: 1; text-align: center; }
+        .btn-mint:hover { background: var(--sage-deep); color: #ffffff; }
+        
+        .contact-info-block { border-top: 1px solid var(--stone-200); padding-top: 2rem; }
+        .contact-info-block p { font-size: 0.95rem; color: var(--stone-700); margin-bottom: 0.5rem; font-weight: 500; }
+        
+        .contact-footer { text-align: center; font-size: 0.9rem; color: var(--stone-500); max-width: 600px; margin: 0 auto 4rem; }
+        
+        .business-card-wrap { text-align:center; max-width: 500px; margin: 0 auto; }
+        .business-card-wrap img { width: 100%; height: auto; object-fit: contain; border-radius: 16px; box-shadow: 0 20px 50px rgba(0,0,0,0.08); transition: transform 0.5s var(--ease-out); }
+        .business-card-wrap img:hover { transform: translateY(-5px); box-shadow: 0 25px 60px rgba(0,0,0,0.12); }
+
+        @media(max-width:768px) { .contact-two-col { grid-template-columns: 1fr; gap: 3rem; } .social-buttons { flex-direction: column; } }
 
         /* ═══ FOOTER ═══ */
-        .footer { padding: 2rem 0; border-top: 1px solid var(--mint-faint); text-align: center; font-size: 0.85rem; color: var(--cypress-faded); }
+        .footer { padding:2rem 0; border-top:1px solid var(--stone-200); position: relative; z-index: 10; background: var(--cream); }
+        .footer-inner { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1rem; }
+        .footer-copy { font-size:0.75rem; color:var(--stone-500); }
+        .footer-credit { font-size:0.7rem; color:var(--stone-500); }
+        .footer-credit a { color:var(--sage-deep); font-weight:600; transition:color 0.3s; }
+        .footer-credit a:hover { color:var(--stone-800); }
     </style>
 </head>
 <body>
@@ -164,12 +236,10 @@
     <div class="container header-inner">
         <a href="#hero" class="logo-link">
             <img src="https://github.com/agelmet/TAVANLI/blob/main/tavlogo.png?raw=true" alt="Χρύσα Μαρία Ταβανλή" class="logo-avatar">
-            <div class="logo-text">
-                <span class="logo-name">Χρύσα Μαρία Ταβανλή</span>
-            </div>
+            <div class="logo-text"><span class="logo-name">Χρύσα Μαρία Ταβανλή</span><span class="logo-role">Ψυχολόγος &mdash; Ψυχοθεραπεύτρια</span></div>
         </a>
         <nav class="nav-desktop">
-            <a href="#about">Σχετικά με Εμένα</a>
+            <a href="#about">Σχετικά με εμένα</a>
             <a href="#systemic">Συστημική Προσέγγιση</a>
             <a href="#services">Υπηρεσίες</a>
             <a href="#faq">Συχνές Ερωτήσεις</a>
@@ -180,72 +250,88 @@
 </header>
 
 <nav class="nav-mobile" id="navMobile">
-    <a href="#about" onclick="closeMenu()">Σχετικά με Εμένα</a>
+    <a href="#about" onclick="closeMenu()">Σχετικά με εμένα</a>
     <a href="#systemic" onclick="closeMenu()">Συστημική Προσέγγιση</a>
     <a href="#services" onclick="closeMenu()">Υπηρεσίες</a>
     <a href="#faq" onclick="closeMenu()">Συχνές Ερωτήσεις</a>
-    <a href="#contact" onclick="closeMenu()" style="color:var(--cypress-light)">Επικοινωνία</a>
+    <a href="#contact" onclick="closeMenu()" style="color:var(--sage-deep)">Επικοινωνία</a>
 </nav>
 
 <section class="hero" id="hero">
-    <div class="container hero">
+    <div class="container hero-inner">
         <div class="hero-content">
-            <span class="label">Καλώς Ήλθατε</span>
-            <h1 class="section-title" style="font-size: clamp(2.5rem, 5vw, 4.5rem);">Συστημική Ψυχοθεραπεία & Συμπερίληψη</h1>
-            <p class="section-subtitle">Ένας ασφαλής, ψηφιακός χώρος που αγκαλιάζει τη διαφορετικότητα. Διαδικτυακές συνεδρίες με ενσυναίσθηση, επιστημονική τεκμηρίωση και σεβασμό στη μοναδικότητά σας.</p>
-            <div class="accent-line"></div>
-            <a href="#contact" class="btn-primary">Κλείστε Ραντεβού</a>
+            <div class="hero-label"><span class="hero-label-line"></span><span class="hero-label-text">Συστημική Ψυχοθεραπεία</span></div>
+            <h1 class="hero-title">Ενδυναμώνοντας τις<br><em>Σχέσεις</em> και την<br><em>Ταυτότητα</em></h1>
+            <p class="hero-desc justified">Ένας ασφαλής, ψηφιακός χώρος που αγκαλιάζει τη διαφορετικότητα. Διαδικτυακές συνεδρίες με ενσυναίσθηση, επιστημονική τεκμηρίωση και σεβασμό στη μοναδικότητά σας.</p>
+            <div class="hero-actions">
+                <a href="#contact" class="btn-primary">Κλείστε Ραντεβού <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+            </div>
         </div>
-        <img src="https://github.com/agelmet/TAVANLI/blob/main/tav1.jpg?raw=true" alt="Χρύσα Μαρία Ταβανλή" class="hero-image">
+        <div class="hero-visual">
+            <div class="hero-image-wrap">
+                <img src="https://github.com/agelmet/TAVANLI/blob/main/tav1.jpg?raw=true" alt="Χρύσα Μαρία Ταβανλή">
+                <div class="hero-accent-shape"></div>
+            </div>
+        </div>
     </div>
 </section>
 
-<section class="text-section" id="about">
-    <div class="container text-section-inner reveal">
-        <span class="label">Σχετικά με Εμένα</span>
-        <h2 class="section-title">Η Διαδρομή Μου</h2>
-        <p>Αν μπορούσα να κατονομάσω μια και μόνη ανάγκη πίσω από την ενασχόλησή μου με τον χώρο της ψυχικής υγείας, θα ήταν σίγουρα η βαθιά μου επιθυμία να δω πώς οι άνθρωποι καταφέρνουν να συνδέονται, να συνδημιουργούν και να πορεύονται. Αυτός ήταν και ο λόγος που, χαράσσοντας την προσωπική μου διαδρομή, διασταυρώθηκα με τη συστημική προσέγγιση.</p>
-        <p>Στις συναντήσεις μας είμαι παρούσα, όχι ως «αυθεντία» αλλά ως συνοδοιπόρος και διευκολύντρια σε ένα μονοπάτι προσωπικής αναζήτησης, κάποια σημεία του οποίου χρειάζεται να φωτίσουμε μαζί. Η ακαδημαϊκή μου πορεία ξεκινά από το Τμήμα Ψυχολογίας του ΑΠΘ και συνεχίζεται με την 4ετή μου εκπαίδευση στη Συστημική - Οικογενειακή Θεραπεία στο Ινστιτούτο Συστημικής Σκέψης και Ψυχοθεραπείας Θεσσαλονίκης. Παράλληλα, κατέχω μεταπτυχιακό τίτλο στην Ειδική Εκπαίδευση (Πανεπιστήμιο Λευκωσίας), ενώ η ανάγκη μου για μια πιο συμπεριληπτική ματιά με οδήγησε σε ένα δεύτερο μεταπτυχιακό στις Σπουδές Φύλου (ΕΑΠ), όπου μελετώ κοινωνικά ζητήματα, έμφυλα στερεότυπα και ανισότητες.</p>
-        <p>Η πολυετής επαγγελματική μου πορεία εκτείνεται σε ποικίλους φορείς ψυχικής υγείας και εκπαίδευσης, δουλεύοντας με άτομα από όλο το ηλικιακό φάσμα (παιδιά, εφήβους, ενήλικες). Σήμερα εργάζομαι ως Σχολική Ψυχολόγος στο Υπουργείο Παιδείας ενώ παράλληλα, τον τελευταίο χρόνο δραστηριοποιούμαι και ιδιωτικά, πραγματοποιώντας διαδικτυακές συνεδρίες με άτομα και οικογένειες που αναζητούν ένα σταθερό πλαίσιο υποστήριξης.</p>
+<section class="content-section" id="about">
+    <div class="container about-inner">
+        <div class="about-image-col reveal">
+            <div class="about-image-wrap"><img src="https://github.com/agelmet/TAVANLI/blob/main/tav1.jpg?raw=true" alt="Χρύσα Μαρία Ταβανλή"></div>
+            <div class="about-image-accent"></div>
+        </div>
+        <div class="content-block">
+            <span class="label reveal">Γνωριμία</span>
+            <h2 class="section-title reveal reveal-delay-1" style="margin-top:0.75rem">Σχετικά με εμένα</h2>
+            <p class="content-text justified reveal reveal-delay-2">Αν μπορούσα να κατονομάσω μια και μόνη ανάγκη πίσω από την ενασχόλησή μου με τον χώρο της ψυχικής υγείας, θα ήταν σίγουρα η βαθιά μου επιθυμία να δω πώς οι άνθρωποι καταφέρνουν να συνδέονται, να συνδημιουργούν και να πορεύονται. Αυτός ήταν και ο λόγος που, χαράσσοντας την προσωπική μου διαδρομή, διασταυρώθηκα με τη συστημική προσέγγιση.</p>
+            <p class="content-text justified reveal reveal-delay-2">Στις συναντήσεις μας είμαι παρούσα, όχι ως «αυθεντία» αλλά ως συνοδοιπόρος και διευκολύντρια σε ένα μονοπάτι προσωπικής αναζήτησης, κάποια σημεία του οποίου χρειάζεται να φωτίσουμε μαζί. Η ακαδημαϊκή μου πορεία ξεκινά από το Τμήμα Ψυχολογίας του ΑΠΘ και συνεχίζεται με την 4ετή μου εκπαίδευση στη Συστημική - Οικογενειακή Θεραπεία στο Ινστιτούτο Συστημικής Σκέψης και Ψυχοθεραπείας Θεσσαλονίκης. Παράλληλα, κατέχω μεταπτυχιακό τίτλο στην Ειδική Εκπαίδευση (Πανεπιστήμιο Λευκωσίας), ενώ η ανάγκη μου για μια πιο συμπεριληπτική ματιά με οδήγησε σε ένα δεύτερο μεταπτυχιακό στις Σπουδές Φύλου (ΕΑΠ), όπου μελετώ κοινωνικά ζητήματα, έμφυλα στερεότυπα και ανισότητες.</p>
+            <p class="content-text justified reveal reveal-delay-2">Η πολυετής επαγγελματική μου πορεία εκτείνεται σε ποικίλους φορείς ψυχικής υγείας και εκπαίδευσης, δουλεύοντας με άτομα από όλο το ηλικιακό φάσμα (παιδιά, εφήβους, ενήλικες). Σήμερα εργάζομαι ως Σχολική Ψυχολόγος στο Υπουργείο Παιδείας ενώ παράλληλα, τον τελευταίο χρόνο δραστηριοποιούμαι και ιδιωτικά, πραγματοποιώντας διαδικτυακές συνεδρίες με άτομα και οικογένειες που αναζητούν ένα σταθερό πλαίσιο υποστήριξης.</p>
+        </div>
     </div>
 </section>
 
-<section class="text-section" id="systemic">
-    <div class="container text-section-inner reveal">
-        <span class="label">Φιλοσοφία</span>
-        <h2 class="section-title">Συστημική Προσέγγιση</h2>
-        <p>Η θεμελιώδης αρχή της συστημικής σκέψης είναι ότι καμία ανθρώπινη εμπειρία δεν αναπτύσσεται απομονωμένα. Έτσι, βιώματα όπως το έντονο άγχος, η θλίψη, οι φοβίες και η μοναξιά, η διαχείριση μιας απώλειας, αλλά και οι προκλήσεις που σχετίζονται με τη γονεϊκότητα, την ταυτότητα ή τη σεξουαλικότητα, παύουν να αντιμετωπίζονται ως μεμονωμένα ατομικά συμπτώματα.</p>
-        <p>Μέσα από τη συστημική ματιά, όλες αυτές οι δυσκολίες αποκτούν μια εντελώς νέα ερμηνεία όταν συνδεθούν με τα δίκτυα στα οποία συμμετέχει το άτομο—από το οικογενειακό, συντροφικό και φιλικό περιβάλλον, μέχρι τον εργασιακό χώρο και το ευρύτερο κοινωνικοπολιτικό πλαίσιο. Αυτή η οπτική αμφισβητεί την κλασική στάση της "αυθεντίας" του θεραπευτή και τις άκαμπτες κλινικές διαγνώσεις, προκρίνοντας μια κοινή, ισότιμη πορεία.</p>
-        <p>Με κύρια εργαλεία τον ανοιχτό διάλογο και μια βαθιά, διερευνητική περιέργεια, φωτίζεται η πολυπλοκότητα της ζωής του ατόμου και αναδεικνύονται οι επαναλαμβανόμενοι κύκλοι συμπεριφοράς που συχνά προκαλούν στασιμότητα στο παρόν. Μέσα από αυτή τη συνεργασία, η έμφαση μετατοπίζεται από την απλή περιγραφή του προβλήματος στην ουσιαστική ανακούφιση, στην ανακάλυψη των προσωπικών αποθεμάτων ανθεκτικότητας και στη διαμόρφωση νέων, πιο λειτουργικών τρόπων συνύπαρξης και επικοινωνίας.</p>
+<section class="content-section" id="systemic" style="background: var(--stone-50);">
+    <div class="container systemic-inner">
+        <div class="systemic-header reveal">
+            <span class="label">Η Φιλοσοφία μου</span>
+            <h2 class="section-title" style="margin-top:0.75rem">Συστημική Προσέγγιση</h2>
+        </div>
+        <div class="content-block">
+            <p class="content-text justified reveal reveal-delay-1">Η θεμελιώδης αρχή της συστημικής σκέψης είναι ότι καμία ανθρώπινη εμπειρία δεν αναπτύσσεται απομονωμένα. Έτσι, βιώματα όπως το έντονο άγχος, η θλίψη, οι φοβίες και η μοναξιά, η διαχείριση μιας απώλειας, αλλά και οι προκλήσεις που σχετίζονται με τη γονεϊκότητα, την ταυτότητα ή τη σεξουαλικότητα, παύουν να αντιμετωπίζονται ως μεμονωμένα ατομικά συμπτώματα.</p>
+            <p class="content-text justified reveal reveal-delay-1">Μέσα από τη συστημική ματιά, όλες αυτές οι δυσκολίες αποκτούν μια εντελώς νέα ερμηνεία όταν συνδεθούν με τα δίκτυα στα οποία συμμετέχει το άτομο—από το οικογενειακό, συντροφικό και φιλικό περιβάλλον, μέχρι τον εργασιακό χώρο και το ευρύτερο κοινωνικοπολιτικό πλαίσιο. Αυτή η οπτική αμφισβητεί την κλασική στάση της "αυθεντίας" του θεραπευτή και τις άκαμπτες κλινικές διαγνώσεις, προκρίνοντας μια κοινή, ισότιμη πορεία.</p>
+            <p class="content-text justified reveal reveal-delay-2">Με κύρια εργαλεία τον ανοιχτό διάλογο και μια βαθιά, διερευνητική περιέργεια, φωτίζεται η πολυπλοκότητα της ζωής του ατόμου και αναδεικνύονται οι επαναλαμβανόμενοι κύκλοι συμπεριφοράς που συχνά προκαλούν στασιμότητα στο παρόν. Μέσα από αυτή τη συνεργασία, η έμφαση μετατοπίζεται από την απλή περιγραφή του προβλήματος στην ουσιαστική ανακούφιση, στην ανακάλυψη των προσωπικών αποθεμάτων ανθεκτικότητας και στη διαμόρφωση νέων, πιο λειτουργικών τρόπων συνύπαρξης και επικοινωνίας.</p>
+        </div>
     </div>
 </section>
 
 <section class="services" id="services">
     <div class="container">
         <div class="services-header reveal">
-            <span class="label">Παροχές</span>
-            <h2 class="section-title">Υπηρεσίες</h2>
+            <span class="label">Υπηρεσίες</span>
+            <h2 class="section-title">Πώς Μπορώ να Βοηθήσω</h2>
         </div>
         <div class="services-grid">
             <div class="service-card reveal">
                 <h3>Ατομική ψυχοθεραπεία</h3>
-                <span class="service-duration">50 λεπτά</span>
-                <p>Ένας προσωπικός χώρος για τη διερεύνηση της ατομικής διαδρομής. Μαζί, εστιάζουμε στην κατανόηση του πώς οι εμπειρίες του παρελθόντος και οι τρέχοντες σχεσιακοί ρόλοι επηρεάζουν το παρόν, ενδυναμώνοντας την προσωπική επιλογή και διευρύνοντας τις δυνατότητες για νέους, πιο αυθεντικούς τρόπους ύπαρξης και συνύπαρξης.</p>
+                <span class="service-includes">50 λεπτά</span>
+                <p class="justified">Ένας προσωπικός χώρος για τη διερεύνηση της ατομικής διαδρομής. Μαζί, εστιάζουμε στην κατανόηση του πώς οι εμπειρίες του παρελθόντος και οι τρέχοντες σχεσιακοί ρόλοι επηρεάζουν το παρόν, ενδυναμώνοντας την προσωπική επιλογή και διευρύνοντας τις δυνατότητες για νέους, πιο αυθεντικούς τρόπους ύπαρξης και συνύπαρξης.</p>
             </div>
-            <div class="service-card reveal">
+            <div class="service-card reveal reveal-delay-1">
                 <h3>Θεραπεία ζεύγους</h3>
-                <span class="service-duration">70 λεπτά</span>
-                <p>Εστίαση στη σχεσιακή δυναμική, την επικοινωνία και την κοινή κατανόηση. Ένας ουδέτερος και υποστηρικτικός χώρος για να αποκωδικοποιηθούν οι συγκρούσεις, να αναγνωριστούν οι αμοιβαίες ανάγκες και να ξαναχτιστεί η σύνδεση και η συντροφικότητα.</p>
+                <span class="service-includes">70 λεπτά</span>
+                <p class="justified">Εστίαση στη σχεσιακή δυναμική, την επικοινωνία και την κοινή κατανόηση. Ένας ουδέτερος και υποστηρικτικός χώρος για να αποκωδικοποιηθούν οι συγκρούσεις, να αναγνωριστούν οι αμοιβαίες ανάγκες και να ξαναχτιστεί η σύνδεση και η συντροφικότητα.</p>
             </div>
             <div class="service-card reveal">
                 <h3>Οικογενειακή θεραπεία</h3>
-                <span class="service-duration">90 λεπτά</span>
-                <p>Όταν οι ισορροπίες στο σπίτι κλονίζονται ή η επικοινωνία μεταξύ των μελών γίνεται δύσκολη, η οικογένεια συναντιέται για να βρει κοινό έδαφος. Μέσα από αυτή τη διαδικασία, φωτίζονται οι ανάγκες όλων, διευκολύνεται ο διάλογος και αναζητούνται νέες λύσεις που φέρνουν ξανά τη σταθερότητα και την αμοιβαία υποστήριξη.</p>
+                <span class="service-includes">90 λεπτά</span>
+                <p class="justified">Όταν οι ισορροπίες στο σπίτι κλονίζονται ή η επικοινωνία μεταξύ των μελών γίνεται δύσκολη, η οικογένεια συναντιέται για να βρει κοινό έδαφος. Μέσα από αυτή τη διαδικασία, φωτίζονται οι ανάγκες όλων, διευκολύνεται ο διάλογος και αναζητούνται νέες λύσεις που φέρνουν ξανά τη σταθερότητα και την αμοιβαία υποστήριξη.</p>
             </div>
-            <div class="service-card reveal">
+            <div class="service-card reveal reveal-delay-1">
                 <h3>Συμβουλευτική γονέων</h3>
-                <span class="service-duration">50 λεπτά</span>
-                <p>Εστίαση στην επεξεργασία και την ενδυνάμωση του γονεϊκού ρόλου μέσα από τη συστημική οπτική. Μέσα από τη συνεργασία μας, επανεξετάζονται τα πρότυπα επικοινωνίας και οριοθέτησης, με σκοπό τη λειτουργική διαχείριση των κρίσεων και των μεταβάσεων της οικογένειας.</p>
+                <span class="service-includes">50 λεπτά</span>
+                <p class="justified">Εστίαση στην επεξεργασία και την ενδυνάμωση του γονεϊκού ρόλου μέσα από τη συστημική οπτική. Μέσα από τη συνεργασία μας, επανεξετάζονται τα πρότυπα επικοινωνίας και οριοθέτησης, με σκοπό τη λειτουργική διαχείριση των κρίσεων και των μεταβάσεων της οικογένειας.</p>
             </div>
         </div>
     </div>
@@ -253,32 +339,34 @@
 
 <section class="faq" id="faq">
     <div class="container faq-inner">
-        <span class="label text-center block w-full reveal" style="text-align: center; width: 100%;">Ενημέρωση</span>
-        <h2 class="section-title reveal" style="text-align: center;">Συχνές Ερωτήσεις</h2>
+        <div class="faq-header reveal">
+            <span class="label">Χρήσιμες Πληροφορίες</span>
+            <h2 class="section-title">Συχνές Ερωτήσεις</h2>
+        </div>
         
         <div class="faq-item reveal">
             <h3 class="faq-question">Τι ισχύει με το θεραπευτικό απόρρητο;</h3>
-            <p>Η διασφάλιση της εμπιστευτικότητας αποτελεί θεμέλιο της θεραπευτικής σχέσης. Όσα συζητώνται μέσα στις συνεδρίες καλύπτονται πλήρως από το επαγγελματικό δεοντολογικό απόρρητο των ψυχολόγων, δημιουργώντας ένα απόλυτα προστατευμένο και ασφαλές περιβάλλον.</p>
+            <p class="faq-answer justified">Η διασφάλιση της εμπιστευτικότητας αποτελεί θεμέλιο της θεραπευτικής σχέσης. Όσα συζητώνται μέσα στις συνεδρίες καλύπτονται πλήρως από το επαγγελματικό δεοντολογικό απόρρητο των ψυχολόγων, δημιουργώντας ένα απόλυτα προστατευμένο και ασφαλές περιβάλλον.</p>
         </div>
         
         <div class="faq-item reveal">
             <h3 class="faq-question">Πόσο διαρκεί συνολικά μια ψυχοθεραπευτική διαδικασία;</h3>
-            <p>Η ψυχοθεραπεία δεν έχει προκαθορισμένη διάρκεια, καθώς κάθε άτομο και κάθε οικογένεια χρειάζεται τον δικό της χρόνο για να νοηματοδοτήσει τις εμπειρίες της και να ανακαλύψει νέες δυνατότητες και επιλογές. Η συχνότητα είναι συνήθως εβδομαδιαία, και η πορεία αξιολογείται από κοινού σε τακτικά διαστήματα με βάση τους στόχους που έχουν τεθεί.</p>
+            <p class="faq-answer justified">Η ψυχοθεραπεία δεν έχει προκαθορισμένη διάρκεια, καθώς κάθε άτομο και κάθε οικογένεια χρειάζεται τον δικό της χρόνο για να νοηματοδοτήσει τις εμπειρίες της και να ανακαλύψει νέες δυνατότητες και επιλογές. Η συχνότητα είναι συνήθως εβδομαδιαία, και η πορεία αξιολογείται από κοινού σε τακτικά διαστήματα με βάση τους στόχους που έχουν τεθεί.</p>
         </div>
         
         <div class="faq-item reveal">
             <h3 class="faq-question">Ποια είναι η πολιτική ακύρωσης των συνεδριών;</h3>
-            <p>Για την εύρυθμη λειτουργία της διαδικασίας και τον σεβασμό του κοινού μας χρόνου, η ακύρωση ή η μεταφορά μιας προγραμματισμένης συνεδρίας γίνεται κατόπιν ενημέρωσης τουλάχιστον 24 ώρες νωρίτερα. Σε αντίθετη περίπτωση, η συνεδρία χρεώνεται κανονικά.</p>
+            <p class="faq-answer justified">Για την εύρυθμη λειτουργία της διαδικασίας και τον σεβασμό του κοινού μας χρόνου, η ακύρωση ή η μεταφορά μιας προγραμματισμένης συνεδρίας γίνεται κατόπιν ενημέρωσης τουλάχιστον 24 ώρες νωρίτερα. Σε αντίθετη περίπτωση, η συνεδρία χρεώνεται κανονικά.</p>
         </div>
         
         <div class="faq-item reveal">
             <h3 class="faq-question">Είναι η διαδικτυακή ψυχοθεραπεία εξίσου αποτελεσματική με τη δια ζώσης;</h3>
-            <p>Η αποτελεσματικότητα της ψυχοθεραπείας βασίζεται πρωτίστως στη σύνδεση και την εμπιστοσύνη που χτίζεται ανάμεσα στην/στον θεραπεύτρια/θεραπευτή και το άτομο. Η διαδικτυακή συνεδρία, αν και διαμεσολαβείται από την τεχνολογία, διατηρεί την ίδια ποιότητα αλληλεπίδρασης και επικοινωνίας, προσφέροντας έναν εξίσου ασφαλή και προστατευμένο χώρο. Συμπερασματικά, η θεραπευτική διαδικασία μπορεί να είναι εξίσου υποστηρικτική και ουσιαστική, προσφέροντας παράλληλα την άνεση και την ευελιξία που απαιτεί ο σύγχρονος τρόπος ζωής.</p>
+            <p class="faq-answer justified">Η αποτελεσματικότητα της ψυχοθεραπείας βασίζεται πρωτίστως στη σύνδεση και την εμπιστοσύνη που χτίζεται ανάμεσα στην/στον θεραπεύτρια/θεραπευτή και το άτομο. Η διαδικτυακή συνεδρία, αν και διαμεσολαβείται από την τεχνολογία, διατηρεί την ίδια ποιότητα αλληλεπίδρασης και επικοινωνίας, προσφέροντας έναν εξίσου ασφαλή και προστατευμένο χώρο. Συμπερασματικά, η θεραπευτική διαδικασία μπορεί να είναι εξίσου υποστηρικτική και ουσιαστική, προσφέροντας παράλληλα την άνεση και την ευελιξία που απαιτεί ο σύγχρονος τρόπος ζωής.</p>
         </div>
         
         <div class="faq-item reveal">
             <h3 class="faq-question">Πώς μπορώ να ξεκινήσω τη συνεργασία μας;</h3>
-            <p>Το πρώτο βήμα είναι η επικοινωνία για τον προγραμματισμό μιας αρχικής συνεδρίας. Σε αυτή την πρώτη συνάντηση, έχουμε την ευκαιρία να γνωριστούμε, να συζητήσουμε τις ανάγκες σας και να διαπιστώσουμε αν η προσέγγισή μου ταιριάζει σε αυτό που αναζητάτε, διαμορφώνοντας έτσι τη βάση για τη μελλοντική μας συνεργασία.</p>
+            <p class="faq-answer justified">Το πρώτο βήμα είναι η επικοινωνία για τον προγραμματισμό μιας αρχικής συνεδρίας. Σε αυτή την πρώτη συνάντηση, έχουμε την ευκαιρία να γνωριστούμε, να συζητήσουμε τις ανάγκες σας και να διαπιστώσουμε αν η προσέγγισή μου ταιριάζει σε αυτό που αναζητάτε, διαμορφώνοντας έτσι τη βάση για τη μελλοντική μας συνεργασία.</p>
         </div>
     </div>
 </section>
@@ -286,105 +374,139 @@
 <section class="reviews" id="reviews">
     <div class="container">
         <div class="reviews-header reveal">
-            <span class="label">Εμπειρίες</span>
+            <span class="label">Εμπειρίες Θεραπευόμενων</span>
             <h2 class="section-title">Αφηγήσεις από τη θεραπευτική εμπειρία</h2>
         </div>
+        
         <div class="reviews-grid">
-            <div class="review-card reveal"><p class="review-text">«Η κυρία Ταβανλή είναι ένα δώρο για τους θεραπευόμενούς της. Από την πρώτη συνεδρία ένιωσα ότι είναι ένα "ασφαλές μέρος" και μια εξαιρετικά καταρτισμένη επαγγελματίας.»</p><span class="review-author">Κ.</span></div>
-            <div class="review-card reveal"><p class="review-text">«Έχω μείνει αρκετά ευχαριστημένη, καταλαβαίνει πάντα τα προβλήματά μου και με κάνει να νιώθω ασφάλεια στο να της περιγράφω τα συναισθήματά μου.»</p><span class="review-author">Ε.</span></div>
-            <div class="review-card reveal"><p class="review-text">«Είναι ένα άτομο που εμπνέει εμπιστοσύνη και πάντα υπάρχει πολύ ωραίο κλίμα στις συνεδρίες. Πολύ σημαντικό κατά τη γνώμη μου.»</p><span class="review-author">Ε.</span></div>
-            <div class="review-card reveal"><p class="review-text">«Εξαιρετική ψυχολόγος και άνθρωπος. Με επαγγελματισμό, ενσυναίσθηση και πραγματικό ενδιαφέρον, με βοήθησε ουσιαστικά σε μια δύσκολη περίοδο.»</p><span class="review-author">Α.</span></div>
-            <div class="review-card reveal"><p class="review-text">«Από την πρώτη στιγμή ένιωσα μια μοναδική οικειότητα και έναν χώρο απόλυτα ασφαλή. Η βαθιά της ενσυναίσθηση δημιουργεί μια δυσεύρετη αίσθηση προστασίας.»</p><span class="review-author">Π.</span></div>
-            <div class="review-card reveal"><p class="review-text">«Επαγγελματίας με ενσυναίσθηση και ευαισθησία, πλήρως καταρτισμένη στον τομέα της. Αισθάνθηκα ότι με άκουσε και με αποδέχτηκε με σεβασμό.»</p><span class="review-author">Α.</span></div>
-            <div class="review-card reveal"><p class="review-text">«Είναι εξαιρετική σαν άνθρωπος και αυτό φαίνεται στη δουλειά και στη προσέγγισή της! Τη συστήνω ανεπιφύλακτα!»</p><span class="review-author">Γ.</span></div>
-            <div class="review-card reveal"><p class="review-text">«Η Χρύσα είναι ακριβώς αυτό που έψαχνα τόσο καιρό. Ίσως τα χρόνια της αναζήτησης να ήταν για να βρω αυτό τον άνθρωπο.»</p><span class="review-author">Χ.</span></div>
-            <div class="review-card reveal"><p class="review-text">«Πολύ φιλική, έδειχνε κατανόηση, με άφηνε να μιλήσω και να ξεδιπλώσω τη σκέψη μου.»</p><span class="review-author">Α.</span></div>
-            <div class="review-card reveal"><p class="review-text">«Άριστη επαγγελματίας. Ευγενική, συνεπής, με ενσυναίσθηση. Με έκανε να νιώσω ασφαλής και άνετα. Τη συνιστώ ανεπιφύλακτα.»</p><span class="review-author">Θ.</span></div>
-            <div class="review-card reveal"><p class="review-text">«Ήταν πολύ ανθρώπινη, δείχνοντας κατανόηση και ενσυναίσθηση. Φάνηκε να έχει εμπειρία και σίγουρα θα την πρότεινα.»</p><span class="review-author">Μ.</span></div>
+            <div class="review-card reveal">
+                <p class="review-text justified">«Η κυρία Ταβανλή είναι ένα δώρο για τους θεραπευόμενούς της. Από την πρώτη συνεδρία ένιωσα ότι είναι ένα “ασφαλές μέρος” και μια εξαιρετικά καταρτισμένη επαγγελματίας.»</p>
+                <div class="review-author">K.</div>
+            </div>
+            <div class="review-card reveal reveal-delay-1">
+                <p class="review-text justified">«Έχω μείνει αρκετά ευχαριστημένη, καταλαβαίνει πάντα τα προβλήματά μου και με κάνει να νιώθω ασφάλεια στο να της περιγράφω τα συναισθήματά μου.»</p>
+                <div class="review-author">Ε.</div>
+            </div>
+            <div class="review-card reveal reveal-delay-2">
+                <p class="review-text justified">«Είναι ένα άτομο που εμπνέει εμπιστοσύνη και πάντα υπάρχει πολύ ωραίο κλίμα στις συνεδρίες. Πολύ σημαντικό κατά τη γνώμη μου.»</p>
+                <div class="review-author">Ε.</div>
+            </div>
+            <div class="review-card reveal">
+                <p class="review-text justified">«Εξαιρετική ψυχολόγος και άνθρωπος. Με επαγγελματισμό, ενσυναίσθηση και πραγματικό ενδιαφέρον, με βοήθησε ουσιαστικά σε μια δύσκολη περίοδο.»</p>
+                <div class="review-author">A.</div>
+            </div>
+            <div class="review-card reveal reveal-delay-1">
+                <p class="review-text justified">«Από την πρώτη στιγμή ένιωσα μια μοναδική οικειότητα και έναν χώρο απόλυτα ασφαλή. Η βαθιά της ενσυναίσθηση δημιουργεί μια δυσεύρετη αίσθηση προστασίας.»</p>
+                <div class="review-author">Π.</div>
+            </div>
+            <div class="review-card reveal reveal-delay-2">
+                <p class="review-text justified">«Επαγγελματίας με ενσυναίσθηση και ευαισθησία, πλήρως καταρτισμένη στον τομέα της. Αισθάνθηκα ότι με άκουσε και με αποδέχτηκε με σεβασμό.»</p>
+                <div class="review-author">A.</div>
+            </div>
+            <div class="review-card reveal">
+                <p class="review-text justified">«Είναι εξαιρετική σαν άνθρωπος και αυτό φαίνεται στη δουλειά και στη προσέγγισή της! Τη συστήνω ανεπιφύλακτα!»</p>
+                <div class="review-author">Γ.</div>
+            </div>
+            <div class="review-card reveal reveal-delay-1">
+                <p class="review-text justified">«Η Χρύσα είναι ακριβώς αυτό που έψαχνα τόσο καιρό. Ίσως τα χρόνια της αναζήτησης να ήταν για να βρω αυτό τον άνθρωπο.»</p>
+                <div class="review-author">Χ.</div>
+            </div>
+            <div class="review-card reveal reveal-delay-2">
+                <p class="review-text justified">«Άριστη επαγγελματίας. Ευγενική, συνεπής, με ενσυναίσθηση. Με έκανε να νιώσω ασφαλής και άνετα. Τη συνιστώ ανεπιφύλακτα.»</p>
+                <div class="review-author">Θ.</div>
+            </div>
         </div>
     </div>
 </section>
 
 <section class="contact" id="contact">
     <div class="container">
-        <div class="reveal">
+        <div class="contact-header reveal">
             <span class="label">Επικοινωνία</span>
-            <h2 class="section-title">Η πρώτη επικοινωνία είναι το πρώτο βήμα της θεραπευτική μας συνεργασίας. Επιλέξτε τον τρόπο που σας εξυπηρετεί καλύτερα.</h2>
+            <h2 class="section-title" style="margin-top:0.75rem">Η πρώτη επικοινωνία είναι το πρώτο βήμα της θεραπευτική μας συνεργασίας. Επιλέξτε τον τρόπο που σας εξυπηρετεί καλύτερα.</h2>
         </div>
         
-        <div class="contact-grid">
+        <div class="contact-two-col">
             <div class="reveal">
-                <form class="contact-form">
-                    <input type="text" placeholder="Ονοματεπώνυμο" required>
-                    <input type="email" placeholder="E-mail" required>
-                    <input type="tel" placeholder="Τηλέφωνο" required>
-                    <input type="text" placeholder="Προτιμώμενα Slots (π.χ. Πρωινά, Απογεύματα)">
-                    <button type="submit" class="btn-primary" style="margin-top: 1rem;">Αποστολή Μηνύματος</button>
+                <form class="contact-form" action="#" method="POST">
+                    <input type="text" name="name" placeholder="Ονοματεπώνυμο" required>
+                    <input type="email" name="email" placeholder="Email" required>
+                    <input type="tel" name="phone" placeholder="Τηλέφωνο" required>
+                    <input type="text" name="slots" placeholder="Προτιμώμενα Slots (π.χ. Πρωινά, Απογεύματα)">
+                    <button type="submit" class="btn-primary">Αποστολή Μηνύματος</button>
                 </form>
             </div>
             
-            <div class="contact-alt reveal">
-                <p>Εναλλακτικά, αν προτιμάτε μια πιο άμεση επικοινωνία, μπορείτε να μου στείλετε μήνυμα στο WhatsApp ή στο Viber.</p>
-                <div style="display:flex; gap:1rem; flex-wrap:wrap; justify-content:center;">
-                    <a href="viber://chat?number=+302107440003" class="btn-primary">Viber</a>
-                    <a href="https://wa.me/302107440003" class="btn-primary">WhatsApp</a>
+            <div class="contact-alt reveal reveal-delay-1">
+                <p class="contact-alt-text justified">Εναλλακτικά, αν προτιμάτε μια πιο άμεση επικοινωνία, μπορείτε να μου στείλετε μήνυμα στο WhatsApp ή στο Viber.</p>
+                <div class="social-buttons">
+                    <a href="#" class="btn-mint">WhatsApp</a>
+                    <a href="#" class="btn-mint">Viber</a>
                 </div>
-                <p style="font-size: 0.9rem; font-weight: 600; margin-top: 1rem;">
-                    Email: info@tavanli.gr <br>
-                    Τηλέφωνο: <a href="tel:2107440003" style="color: var(--cypress-light);">210 744 0003</a>
-                </p>
+                
+                <div class="contact-info-block">
+                    <p>Email: info@tavanli.gr</p>
+                    <p>Τηλέφωνο: 210 744 0003</p>
+                </div>
             </div>
         </div>
         
-        <div class="footer-note reveal">
-            Θα επικοινωνήσω μαζί σας εντός 24 ωρών για να επιβεβαιώσουμε τη διαθεσιμότητα και να ορίσουμε την πρώτη μας συνεδρία.
-        </div>
-
+        <p class="contact-footer reveal">Θα επικοινωνήσω μαζί σας εντός 24 ωρών για να επιβεβαιώσουμε τη διαθεσιμότητα και να ορίσουμε την πρώτη μας συνεδρία.</p>
+        
         <div class="business-card-wrap reveal">
             <img src="https://github.com/agelmet/TAVANLI/blob/main/tav2.jpg?raw=true" alt="Επαγγελματική Κάρτα">
         </div>
     </div>
+    
+    <img src="https://github.com/agelmet/TAVANLI/blob/main/tavlogo.png?raw=true" alt="" class="page-watermark">
 </section>
 
 <footer class="footer">
-    <div class="container">
-        <p>&copy; 2026 Χρύσα Μαρία Ταβανλή. Όλα τα δικαιώματα διατηρούνται. Designed by <a href="https://advonmedia.com" target="_blank" rel="noopener noreferrer" style="font-weight: 600; color: var(--cypress-light);">Advon Media</a></p>
+    <div class="container footer-inner">
+        <p class="footer-copy">&copy; 2026 Χρύσα Μαρία Ταβανλή. Όλα τα δικαιώματα διατηρούνται.</p>
+        <p class="footer-credit">Designed by <a href="https://advonmedia.com" target="_blank" rel="noopener noreferrer">Advon Media</a></p>
     </div>
 </footer>
 
 <script>
-    const header = document.getElementById('header');
-    window.addEventListener('scroll', () => { header.classList.toggle('scrolled', window.scrollY > 60) }, { passive: true });
+const header = document.getElementById('header');
+window.addEventListener('scroll', () => {
+    header.classList.toggle('scrolled', window.scrollY > 60);
+}, {passive: true});
 
-    const hamburger = document.getElementById('hamburger'), navMobile = document.getElementById('navMobile');
-    hamburger.addEventListener('click', () => { 
-        hamburger.classList.toggle('active'); 
-        navMobile.classList.toggle('open'); 
-        document.body.style.overflow = navMobile.classList.contains('open') ? 'hidden' : ''; 
+const hamburger = document.getElementById('hamburger'), navMobile = document.getElementById('navMobile');
+hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('active');
+    navMobile.classList.toggle('open');
+    document.body.style.overflow = navMobile.classList.contains('open') ? 'hidden' : '';
+});
+
+function closeMenu() {
+    hamburger.classList.remove('active');
+    navMobile.classList.remove('open');
+    document.body.style.overflow = '';
+}
+
+const reveals = document.querySelectorAll('.reveal');
+const revealObs = new IntersectionObserver(e => {
+    e.forEach(en => {
+        if(en.isIntersecting) {
+            en.target.classList.add('visible');
+            revealObs.unobserve(en.target);
+        }
+    })
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+reveals.forEach(el => revealObs.observe(el));
+
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', function(e) {
+        const t = document.querySelector(this.getAttribute('href'));
+        if(t) {
+            e.preventDefault();
+            window.scrollTo({ top: t.getBoundingClientRect().top + window.pageYOffset - 80, behavior: 'smooth' });
+        }
     });
-    
-    function closeMenu() { 
-        hamburger.classList.remove('active'); 
-        navMobile.classList.remove('open'); 
-        document.body.style.overflow = ''; 
-    }
-
-    const reveals = document.querySelectorAll('.reveal');
-    const revealObs = new IntersectionObserver(e => {
-        e.forEach(en => { if (en.isIntersecting) { en.target.classList.add('visible'); revealObs.unobserve(en.target); } })
-    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-    
-    reveals.forEach(el => revealObs.observe(el));
-
-    document.querySelectorAll('a[href^="#"]').forEach(a => {
-        a.addEventListener('click', function(e) {
-            const t = document.querySelector(this.getAttribute('href'));
-            if (t) {
-                e.preventDefault();
-                window.scrollTo({ top: t.getBoundingClientRect().top + window.pageYOffset - 80, behavior: 'smooth' });
-            }
-        });
-    });
+});
 </script>
 </body>
 </html>
